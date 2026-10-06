@@ -4,6 +4,7 @@ import { HowItWorks } from '@/components/HowItWorks';
 import { TrafficLight } from '@/components/TrafficLight';
 import { TryIt } from '@/components/TryIt';
 import { NoPressure } from '@/components/NoPressure';
+import { Family } from '@/components/Family';
 
 export default function Page() {
   return (
@@ -15,6 +16,7 @@ export default function Page() {
         <TryIt />
         <TrafficLight />
         <NoPressure />
+        <Family />
       </main>
     </>
   );
