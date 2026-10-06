@@ -7,6 +7,8 @@ import { NoPressure } from '@/components/NoPressure';
 import { Family } from '@/components/Family';
 import { Privacy } from '@/components/Privacy';
 import { Emergency } from '@/components/Emergency';
+import { Accessibility } from '@/components/Accessibility';
+import { A11yBar } from '@/components/A11yBar';
 
 export default function Page() {
   return (
@@ -20,8 +22,10 @@ export default function Page() {
         <NoPressure />
         <Family />
         <Privacy />
+        <Accessibility />
         <Emergency />
       </main>
+      <A11yBar />
     </>
   );
 }
