@@ -1,0 +1,15 @@
+.screen { flex: 1; display: flex; flex-direction: column; }
+.top { padding: 14px 22px 8px; display: flex; justify-content: space-between; align-items: center; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: var(--c-title); }
+.mark { width: 30px; height: 30px; border-radius: 9px; background: var(--c-primary); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.voice { font-size: 20px; }
+.greet { padding: 4px 22px 12px; font-size: 22px; font-weight: 800; color: var(--c-title); line-height: 1.2; }
+.cards { flex: 1; padding: 0 18px; display: flex; flex-direction: column; gap: 13px; }
+.card { border: 2px solid var(--c-ink); border-radius: 18px; padding: 16px; display: flex; align-items: center; gap: 14px; }
+.card strong { display: block; font-size: 18px; font-weight: 800; color: var(--c-title); line-height: 1.2; }
+.card small { display: block; font-size: 13px; color: var(--c-muted); }
+.icon { font-size: 32px; }
+.family { border: 2px dashed var(--c-primary); border-radius: 16px; padding: 13px; text-align: center; color: var(--c-primary); font-size: 16px; font-weight: 700; }
+.tabs { display: flex; border-top: 2px solid var(--c-ink); margin-top: 10px; }
+.tabs span { flex: 1; padding: 9px 0; text-align: center; font-size: 11px; color: var(--c-subtle); line-height: 1.4; }
+.tabs .active { color: var(--c-primary); font-weight: 700; }

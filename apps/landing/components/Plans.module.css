@@ -1,0 +1,108 @@
+.wrap {
+  background: var(--card);
+  border-top: 2px solid var(--line);
+  border-bottom: 2px solid var(--line);
+}
+
+.head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head :global(.section-title),
+.head :global(.section-lead) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 420px));
+  justify-content: center;
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.plan {
+  border: 2px solid;
+  border-radius: 22px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.free {
+  background: var(--risk-low-soft);
+  border-color: var(--risk-low-solid);
+}
+
+.plus {
+  background: var(--risk-attention-soft);
+  border-color: var(--risk-attention-border);
+}
+
+.plan header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.plan h3 {
+  font-size: 1.7rem;
+}
+
+.free h3,
+.free .price {
+  color: var(--risk-low-strong);
+}
+
+.plus h3,
+.plus .price {
+  color: var(--risk-attention-strong);
+}
+
+.price {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  color: var(--c-text);
+}
+
+.plan li {
+  display: flex;
+  gap: 10px;
+}
+
+.free li span {
+  color: var(--risk-low-solid);
+  font-weight: 800;
+}
+
+.plus li span {
+  color: var(--risk-attention-border);
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

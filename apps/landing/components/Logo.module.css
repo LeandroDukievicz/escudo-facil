@@ -1,0 +1,23 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  color: var(--fg);
+  text-decoration: none;
+}
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-primary);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  color: #fff;
+}
+.sm .mark { width: 32px; height: 32px; font-size: 16px; border-radius: 9px; }
+.md .mark { width: 42px; height: 42px; font-size: 21px; }
+.lg .mark { width: 56px; height: 56px; font-size: 28px; border-radius: 16px; }
+.sm .name { font-size: 1rem; }
+.md .name { font-size: 1.25rem; }
+.lg .name { font-size: 1.6rem; }
