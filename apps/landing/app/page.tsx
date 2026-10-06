@@ -6,6 +6,7 @@ import { TryIt } from '@/components/TryIt';
 import { NoPressure } from '@/components/NoPressure';
 import { Family } from '@/components/Family';
 import { Privacy } from '@/components/Privacy';
+import { Emergency } from '@/components/Emergency';
 
 export default function Page() {
   return (
@@ -19,6 +20,7 @@ export default function Page() {
         <NoPressure />
         <Family />
         <Privacy />
+        <Emergency />
       </main>
     </>
   );
