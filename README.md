@@ -106,7 +106,10 @@ npm run dev:landing
 # 5. Build estático da landing → apps/landing/out
 npm run build:landing
 
-# 6. Typecheck de todos os pacotes
+# 6. App mobile (Expo) → Expo Go, emulador ou navegador
+npm run dev:mobile
+
+# 7. Typecheck de todos os pacotes
 npm run typecheck
 ```
 
@@ -134,7 +137,19 @@ Next.js 16 (App Router) com `output: 'export'`: gera HTML estático que pode ser
 
 ## App mobile (`apps/mobile`)
 
-React Native com **Expo** e **expo-router**, em desenvolvimento na branch `feat/mobile`. Vai implementar as 28 telas do wireframe usando o mesmo `@escudo/core`.
+React Native com **Expo SDK 57** e **expo-router**, implementando as 28 telas do wireframe com o mesmo `@escudo/core`. Offline-first, com OCR no aparelho, leitura em voz alta, histórico local, alto contraste e texto grande.
+
+| Fluxo | Telas |
+|---|---|
+| Entrada sem cadastro | A1 boas-vindas · A2 "você não precisa criar conta" · A3 acessibilidade · A4 privacidade |
+| Home | B1 três ações grandes · B2 alto contraste · B3 pedir ajuda (WhatsApp) · B4 Modo Família |
+| Verificar link | C1 colar link · C2 verificando · C3–C6 resultado verde/amarelo/vermelho/cinza |
+| Verificar print | D1 galeria/câmera + OCR local · D2 máscara antes da IA · D3 trechos destacados · D4 passo a passo |
+| Proposta suspeita | E1/E2 8 perguntas Sim/Não/Não sei · E3 resultado · E4 Não me pressione · E5 checklist |
+| Histórico e Aprender | F1 histórico local · F2 nuvem (Plus) · F3 cards · F4 card com "Entendi" |
+| Emergência e planos | G1 "Acho que caí em golpe" · G2 resumo do caso (PDF) · G3 planos · G4 login · G5 ler em voz alta |
+
+Estrutura, mapa de rotas e decisões em [`apps/mobile/README.md`](apps/mobile/README.md).
 
 ## Motor anti-golpe (`packages/core`)
 
