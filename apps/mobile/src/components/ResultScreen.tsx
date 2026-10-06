@@ -1,6 +1,6 @@
 import type { AnalysisResult } from '@escudo/core';
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { resultToSpeech } from '@/services/speech';
 import { useSettings } from '@/state/settings';
@@ -8,7 +8,6 @@ import { useTheme } from '@/theme';
 import { AppText } from './AppText';
 import { ReadAloudSheet } from './ReadAloudSheet';
 import { BackButton } from './Screen';
-import { ScrollView } from 'react-native';
 
 /**
  * Moldura das telas de resultado: cabeçalho do semáforo, conteúdo rolável,
@@ -20,8 +19,11 @@ export function ResultScreen({
   children,
   footer,
   statusRight,
+  tone,
 }: {
   result: AnalysisResult;
+  /** Cor do topo quando o cabeçalho usa outro tom (ex.: proposta). */
+  tone?: AnalysisResult['level'];
   header: React.ReactNode;
   children: React.ReactNode;
   footer: React.ReactNode;
@@ -37,7 +39,7 @@ export function ResultScreen({
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: t.c.bg }]}>
-      <View style={[styles.bar, { backgroundColor: t.risk(result.level).soft }]}>
+      <View style={[styles.bar, { backgroundColor: t.risk(tone ?? result.level).soft }]}>
         <BackButton />
         {statusRight ? (
           <AppText size={12} weight="bold" color={t.c.subtle} style={styles.flex}>

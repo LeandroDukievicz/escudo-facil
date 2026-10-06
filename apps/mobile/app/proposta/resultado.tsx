@@ -30,6 +30,7 @@ export default function ProposalResult() {
   return (
     <ResultScreen
       result={q}
+      tone={tone}
       header={<RiskHeader level={tone} title={q.headline} subtitle={SCORE_LINE[q.level]} />}
       footer={
         <>

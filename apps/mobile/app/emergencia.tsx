@@ -1,8 +1,7 @@
 import { EMERGENCY_STEPS } from '@escudo/core';
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native';
 import { AppText } from '@/components/AppText';
 import { Button, ButtonRow } from '@/components/Button';
 import { BackButton } from '@/components/Screen';
