@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "Escudo Fácil",
+    "slug": "escudo-facil",
+    "scheme": "escudofacil",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.escudofacil.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Para você escolher o print da conversa que quer verificar.",
+        "NSCameraUsageDescription": "Para tirar foto da tela de outro celular e verificar a mensagem."
+      }
+    },
+    "android": {
+      "package": "br.com.escudofacil.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#2563a8"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "imageWidth": 120
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Para você escolher o print da conversa que quer verificar.",
+          "cameraPermission": "Para tirar foto da tela de outro celular e verificar a mensagem."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
