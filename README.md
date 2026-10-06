@@ -171,9 +171,11 @@ Paleta extraída do wireframe: azul confiança `#2563a8`, semáforo (`#1f9d57`, 
 
 ## Deploy no GitHub Pages
 
-O workflow `.github/workflows/pages.yml` publica diretamente `apps/landing/site/`, sem instalar pacotes nem compilar a página na publicação. No repositório, ative **Settings → Pages → Build and deployment → Source: GitHub Actions**. Pushes na `main` que alterem o site executam o deploy; também é possível acioná-lo em **Actions → GitHub Pages → Run workflow**.
+O workflow `.github/workflows/pages.yml` publica diretamente `apps/landing/site/`, sem instalar pacotes nem compilar a página na publicação. O Pages do repositório já está em **Settings → Pages → Build and deployment → Source: GitHub Actions**. Pushes na `main` que alterem o site executam o deploy; também é possível acioná-lo em **Actions → GitHub Pages → Run workflow**.
 
-Endereço esperado após a primeira publicação: `https://leandrodukievicz.github.io/escudo-facil/`. Os caminhos dos arquivos são relativos para funcionar nesse subdiretório.
+Este é o único workflow que deve publicar no Pages. Workflows criados pela interface do GitHub (como o modelo `static.yml`) sobem a raiz do repositório, que não tem `index.html`, e disputam o ambiente `github-pages` no mesmo push.
+
+Endereço publicado: <https://leandrodukievicz.github.io/escudo-facil/>. Os caminhos dos arquivos são relativos para funcionar nesse subdiretório.
 
 ## Acessibilidade
 
