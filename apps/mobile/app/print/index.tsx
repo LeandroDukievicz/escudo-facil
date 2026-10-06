@@ -68,7 +68,7 @@ export default function VerifyPrint() {
       kind: 'print',
       level: a.result.level,
       title: a.result.title,
-      preview: masked.slice(0, 80),
+      preview: 'Mensagem analisada (conteúdo oculto)',
       signals: a.result.signals.map((s) => s.label),
     });
     setPrint({

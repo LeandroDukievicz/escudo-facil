@@ -39,7 +39,7 @@ export default function VerifyLink() {
       kind: 'link',
       level: result.level,
       title: result.title,
-      preview: value.trim().slice(0, 80),
+      preview: 'Link analisado (endereço oculto)',
       signals: result.signals.map((s) => s.label),
     });
     setLink({ input: value.trim(), result, historyId: entry.id });

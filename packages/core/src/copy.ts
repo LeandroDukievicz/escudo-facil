@@ -60,7 +60,7 @@ export const LEVEL_COPY: Record<
 };
 
 export const OFFLINE_NOTICE =
-  'Análise básica feita no aparelho. Para uma verificação mais completa, conecte-se à internet.';
+  'Análise feita no aparelho com regras locais. Não consultamos a reputação dos links nem confirmamos quem enviou a mensagem.';
 
 /** Ações recomendadas por nível (lista "O que fazer agora"). */
 export const LEVEL_ACTIONS: Record<RiskLevel, string[]> = {

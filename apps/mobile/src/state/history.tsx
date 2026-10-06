@@ -32,7 +32,20 @@ export function HistoryProvider({ children }: { children: React.ReactNode }) {
   const [entries, setEntries] = useState<HistoryEntry[]>([]);
 
   useEffect(() => {
-    readArray<HistoryEntry>(KEY).then(setEntries);
+    readArray<HistoryEntry>(KEY).then((stored) => {
+      const cleaned = stored.map((entry) => {
+        if (entry.kind === 'link') return { ...entry, preview: 'Link analisado (endereço oculto)' };
+        if (entry.kind === 'print' || entry.kind === 'text') return { ...entry, preview: 'Mensagem analisada (conteúdo oculto)' };
+        return entry;
+      });
+      setEntries((current) => {
+        const merged = [...current, ...cleaned].slice(0, MAX);
+        if (current.length || stored.some((entry, index) => entry.preview !== cleaned[index]?.preview)) {
+          void writeJson(KEY, merged);
+        }
+        return merged;
+      });
+    });
   }, []);
 
   const persist = (next: HistoryEntry[]) => {

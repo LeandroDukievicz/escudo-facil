@@ -1,4 +1,4 @@
-import type { AiAnalysisRequest, AiAnalysisResponse } from '@escudo/core';
+import { sanitizeAiRequest, type AiAnalysisRequest, type AiAnalysisResponse } from '@escudo/core';
 
 /**
  * Cliente da "Análise com IA" (online, opcional). O app envia SOMENTE
@@ -6,18 +6,19 @@ import type { AiAnalysisRequest, AiAnalysisResponse } from '@escudo/core';
  * provedor de IA. Configure `EXPO_PUBLIC_AI_API_URL` para ativar.
  */
 const API_URL = process.env.EXPO_PUBLIC_AI_API_URL;
+const SECURE_API_URL = API_URL && /^https:\/\/[^/?#@]+\/?$/i.test(API_URL) ? API_URL.replace(/\/$/, '') : undefined;
 
-export const aiAvailable = (): boolean => !!API_URL;
+export const aiAvailable = (): boolean => !!SECURE_API_URL;
 
 export async function analyzeWithAi(req: AiAnalysisRequest, timeoutMs = 20_000): Promise<AiAnalysisResponse> {
-  if (!API_URL) throw new Error('IA não configurada');
+  if (!SECURE_API_URL) throw new Error('IA não configurada com HTTPS');
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    const res = await fetch(`${API_URL.replace(/\/$/, '')}/analyze`, {
+    const res = await fetch(`${SECURE_API_URL}/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(req),
+      body: JSON.stringify(sanitizeAiRequest(req)),
       signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`IA respondeu ${res.status}`);

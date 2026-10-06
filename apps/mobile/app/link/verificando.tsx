@@ -4,20 +4,18 @@ import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { AppText } from '@/components/AppText';
 import { Screen } from '@/components/Screen';
 import { Badge } from '@/components/ui';
-import { useOnline } from '@/services/network';
 import { useTheme } from '@/theme';
 
 const STEPS = [
   'Analisando padrão do endereço',
   'Procurando link encurtado / disfarçado',
-  'Comparando com listas de segurança',
-  'Verificando redirecionamentos',
+  'Comparando com regras locais de risco',
+  'Preparando orientações para você',
 ];
 
 /** C2 · Verificando… — mostra o que está sendo checado, passo a passo. */
 export default function Checking() {
   const t = useTheme();
-  const online = useOnline();
   const [step, setStep] = useState(0);
   const spin = useRef(new Animated.Value(0)).current;
 
@@ -41,7 +39,7 @@ export default function Checking() {
   return (
     <Screen scroll={false} contentStyle={styles.center} footer={
       <AppText size={13} color={t.c.subtle} align="center">
-        Sem internet? Fazemos a análise básica no aparelho.
+        A análise do link acontece no aparelho.
       </AppText>
     }>
       <Animated.View
@@ -50,7 +48,7 @@ export default function Checking() {
       <AppText size={22} weight="heavy" color={t.c.title} align="center" accessibilityLiveRegion="polite">
         Verificando sinais{'\n'}de risco…
       </AppText>
-      {online === false && <Badge kind="offline" label="ANÁLISE NO APARELHO" />}
+      <Badge kind="offline" label="ANÁLISE NO APARELHO" />
       <View style={styles.steps}>
         {STEPS.map((s, i) => {
           const done = i < step;

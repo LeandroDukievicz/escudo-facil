@@ -83,7 +83,7 @@ Gerenciado com **npm workspaces** (Node ≥ 20.19, ver `.nvmrc`).
 **Decisões principais**
 
 1. **Regras de negócio em um pacote puro (`@escudo/core`)**. A mesma análise roda na landing (navegador), no app (offline) e pode rodar num backend. Sem dependências e sem acesso à rede: o link **nunca** é aberto, só o texto do endereço é lido.
-2. **Offline-first**. Toda a análise básica acontece no aparelho. A internet só é usada para recursos que de fato precisam dela (IA, reputação de URL, sincronização familiar).
+2. **Offline-first**. A análise atual de links e mensagens acontece no aparelho. Não há consulta de reputação, acesso ao destino do link nem sincronização familiar implementados. A internet é usada apenas pela IA opcional, quando configurada.
 3. **IA como camada opcional**. O contrato (`AiAnalysisRequest/Response`) e o prompt de sistema vivem no core, versionados junto com as regras de copy. A chave do provedor de IA fica **sempre no backend**, nunca no app.
 4. **Tokens compartilhados**. Landing (variáveis CSS geradas no build) e app (StyleSheet) usam a mesma paleta, então o semáforo é idêntico nas duas pontas.
 5. **TypeScript no motor e no app mobile; JavaScript puro na landing**. O script `scripts/build-static-core.mjs` gera módulos ES para o navegador a partir das regras do `@escudo/core`, sem bibliotecas no site publicado.
@@ -190,7 +190,8 @@ Endereço publicado: <https://leandrodukievicz.github.io/escudo-facil/>. Os cami
 
 - Análise básica **no aparelho**; nada sai do celular sem o usuário escolher.
 - O app **não abre** links e **não torna links suspeitos clicáveis**.
-- **Máscara de dados** (CPF, telefone, e-mail, chave Pix, cartão, RG/CNH, endereço) antes de qualquer envio para IA.
+- **Envio à IA opcional** exige endpoint HTTPS e toque explícito. O cliente mascara dados reconhecidos no texto, omite trechos dos sinais e envia apenas o domínio principal do link. A máscara por padrões não cobre todos os dados possíveis: revise o texto exibido antes de enviar.
+- O histórico novo guarda apenas tipo, risco e resumo genérico, sem o link ou a mensagem. Instalações anteriores podem conter prévias antigas; use "Apagar tudo" no Histórico para removê-las.
 - Histórico local, com botão "apagar tudo".
 - Login **só** em: plano Plus, histórico na nuvem e Modo Família.
 

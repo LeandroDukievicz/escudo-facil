@@ -1,4 +1,4 @@
-import { findForbiddenPhrases, LEVEL_COPY, type AiAnalysisRequest, type AiAnalysisResponse } from '@escudo/core';
+import { validateAiResponse, type AiAnalysisRequest, type AiAnalysisResponse } from '@escudo/core';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { aiAvailable, analyzeWithAi } from '@/services/ai';
@@ -23,9 +23,7 @@ export function AiPanel({ request }: { request: AiAnalysisRequest }) {
   const run = async () => {
     setState('loading');
     try {
-      const r = await analyzeWithAi(request);
-      // Segunda barreira para a regra "nunca dizer seguro".
-      if (findForbiddenPhrases(JSON.stringify(r)).length) r.title = LEVEL_COPY[r.level].title;
+      const r = validateAiResponse(await analyzeWithAi(request), request.local.level);
       setRes(r);
       setState('done');
     } catch {

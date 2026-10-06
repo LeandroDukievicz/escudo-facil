@@ -26,6 +26,8 @@ export function parseLink(input        )                    {
       subdomains: [], isIp: false,
     };
   }
+  // HTTP(S) sem // é ambíguo e não representa um endereço navegável confiável.
+  if (scheme && !rest.startsWith('//')) return null;
   rest = rest.replace(/^\/\//, '');
   const authorityEnd = rest.search(/[/?#]/);
   const authority = authorityEnd === -1 ? rest : rest.slice(0, authorityEnd);
@@ -34,6 +36,7 @@ export function parseLink(input        )                    {
   const userinfo = at === -1 ? '' : authority.slice(0, at);
   const hostPort = at === -1 ? authority : authority.slice(at + 1);
   const [rawHost = '', port = ''] = hostPort.split(':');
+  if (hostPort.startsWith('[') || hostPort.split(':').length > 2 || (port && !/^\d{1,5}$/.test(port))) return null;
   const host = rawHost.toLowerCase().replace(/\.$/, '');
   const hashIdx = afterAuthority.indexOf('#');
   const fragment = hashIdx === -1 ? '' : afterAuthority.slice(hashIdx + 1);
@@ -42,7 +45,7 @@ export function parseLink(input        )                    {
   const path = qIdx === -1 ? beforeHash : beforeHash.slice(0, qIdx);
   const query = qIdx === -1 ? '' : beforeHash.slice(qIdx + 1);
   const isIp = IPV4_RE.test(host);
-  if (!host || (!isIp && !host.includes('.'))) return null;
+  if (!host || (!isIp && !host.includes('.')) || /[^\p{L}\p{N}.-]/u.test(host) || host.includes('..') || host.startsWith('.') || host.startsWith('-')) return null;
   const labels = host.split('.');
   const lastTwo = labels.slice(-2).join('.');
   const suffixLen = MULTI_LEVEL_SUFFIXES.has(lastTwo) ? 2 : 1;

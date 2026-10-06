@@ -21,7 +21,7 @@ Variáveis opcionais em `apps/mobile/.env` (veja `.env.example`):
 
 | Variável | Para quê |
 |---|---|
-| `EXPO_PUBLIC_AI_API_URL` | Ativa o botão "Análise com IA". Sem ela, o app funciona 100% com a análise local. |
+| `EXPO_PUBLIC_AI_API_URL` | URL base HTTPS da API de IA; ativa o botão "Análise com IA". Sem ela, o app funciona com a análise local. |
 
 ## Estrutura
 
@@ -90,8 +90,8 @@ apps/mobile/
 
 - **Motor compartilhado:** toda a análise vem de `@escudo/core`, a mesma usada na landing. O link **nunca** é aberto e é exibido como texto não clicável.
 - **OCR local:** `@react-native-ml-kit/text-recognition` roda no aparelho. No Expo Go e no web o módulo nativo não existe, e o app pede para colar o texto, sem quebrar o fluxo.
-- **IA opcional e protegida:** o botão só aparece com internet e com `EXPO_PUBLIC_AI_API_URL`. No print, a tela D2 mascara CPF/telefone/e-mail/Pix/cartão **antes** do envio. A resposta da IA passa de novo pela regra "nunca dizer seguro".
-- **Persistência:** preferências, histórico (máx. 200 itens), contato de confiança e progresso do Aprender ficam no `AsyncStorage`, **só no aparelho**. "Apagar tudo" e "Apagar dados sensíveis" pedem confirmação.
+- **IA opcional:** o botão só aparece com internet e uma URL HTTPS em `EXPO_PUBLIC_AI_API_URL`. O cliente mascara dados conhecidos, remove trechos dos sinais e envia apenas o domínio principal do link. A máscara pode não reconhecer todos os dados: revise o texto antes do envio. Respostas inválidas ou com frases proibidas são rejeitadas.
+- **Persistência:** preferências, histórico (máx. 200 itens, sem conteúdo bruto nas novas entradas), contato de confiança e progresso do Aprender ficam no `AsyncStorage`, **só no aparelho**. O armazenamento local não é criptografado pelo app. "Apagar tudo" e "Apagar dados sensíveis" pedem confirmação.
 - **Acessibilidade:** texto grande (escala de 1× a 1,5×), alto contraste (tema B2), voz (`expo-speech` pt-BR com pausar e "mais devagar"), alvos ≥ 48px, `accessibilityRole/State/Label` em todos os controles, feedback tátil, sem gestos complexos.
 - **Plus sem backend (ainda):** as telas B4, F2 e G4 existem e respeitam a regra "login só aqui", mas informam com honestidade que o plano ainda não está disponível. Nada é cobrado.
 

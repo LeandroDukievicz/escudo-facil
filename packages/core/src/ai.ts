@@ -1,4 +1,7 @@
+import { findForbiddenPhrases, LEVEL_COPY } from './copy';
 import type { AnalysisResult, RiskLevel } from './types';
+import { maskSensitive } from './mask';
+import { parseLink } from './url/parse';
 
 /**
  * Contrato da "Análise com IA" (online). O app só chama a IA quando o
@@ -14,6 +17,26 @@ export interface AiAnalysisRequest {
   locale: 'pt-BR';
 }
 
+/** Envia só o domínio principal; caminhos, parâmetros, fragmentos e credenciais podem conter segredos. */
+export function linkContentForAi(input: string): string {
+  const link = parseLink(input);
+  return link?.registrableDomain
+    ? `Domínio analisado: ${maskSensitive(link.registrableDomain).text}`
+    : 'Endereço não reconhecido pela análise local';
+}
+
+/** Trechos dos sinais podem repetir dados digitados ou extraídos do print. */
+export function sanitizeAiRequest(request: AiAnalysisRequest): AiAnalysisRequest {
+  return {
+    ...request,
+    content: request.kind === 'link' ? linkContentForAi(request.content) : maskSensitive(request.content).text,
+    local: {
+      level: request.local.level,
+      signals: request.local.signals.map(({ id, category, severity, label }) => ({ id, category, severity, label })),
+    },
+  };
+}
+
 export interface AiAnalysisResponse {
   level: RiskLevel;
   title: string;
@@ -25,6 +48,33 @@ export interface AiAnalysisResponse {
   known: string[];
   unknown: string[];
   actions: string[];
+}
+
+/** Resposta externa é dado não confiável; a análise local continua sendo o piso de risco. */
+export function validateAiResponse(value: unknown, localLevel: RiskLevel): AiAnalysisResponse {
+  if (!value || typeof value !== 'object') throw new Error('Resposta inválida da IA');
+  const r = value as Record<string, unknown>;
+  const levels: RiskLevel[] = ['low', 'attention', 'high', 'unknown'];
+  if (!levels.includes(r.level as RiskLevel) || typeof r.intent !== 'string') throw new Error('Resposta inválida da IA');
+  const list = (key: string): string[] => {
+    const v = r[key];
+    if (!Array.isArray(v) || v.length > 5 || !v.every((item) => typeof item === 'string' && item.length <= 500)) {
+      throw new Error('Resposta inválida da IA');
+    }
+    return v;
+  };
+  const responseLevel = r.level as RiskLevel;
+  const rank: Record<RiskLevel, number> = { unknown: 0, low: 1, attention: 2, high: 3 };
+  if (rank[responseLevel] < rank[localLevel]) throw new Error('IA contradiz o risco da análise local');
+  const level = responseLevel;
+  const response: AiAnalysisResponse = {
+    level,
+    title: LEVEL_COPY[level].title,
+    intent: r.intent.slice(0, 500),
+    reasons: list('reasons'), known: list('known'), unknown: list('unknown'), actions: list('actions'),
+  };
+  if (findForbiddenPhrases(JSON.stringify(response)).length) throw new Error('Resposta insegura da IA');
+  return response;
 }
 
 /**

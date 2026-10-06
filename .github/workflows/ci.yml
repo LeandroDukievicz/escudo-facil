@@ -19,6 +19,8 @@ jobs:
         run: npm test -w @escudo/core
       - name: Typecheck
         run: npm run typecheck
+      - name: Compatibilidade de versões Expo
+        run: cd apps/mobile && npx expo install --check
       - name: Gerar motor JavaScript da landing
         run: npm run build:landing
       - name: Conferir módulos gerados

@@ -1,4 +1,4 @@
-import { analyzeLink, LEVEL_COPY } from '@escudo/core';
+import { LEVEL_COPY } from '@escudo/core';
 import { Redirect, router } from 'expo-router';
 import { useState } from 'react';
 import { AiPanel } from '@/components/AiPanel';
@@ -8,7 +8,6 @@ import { ResultBody } from '@/components/ResultBody';
 import { ResultScreen } from '@/components/ResultScreen';
 import { RiskHeader } from '@/components/RiskHeader';
 import { Box } from '@/components/ui';
-import { isOnline } from '@/services/network';
 import { buildShareText, shareSystem } from '@/services/share';
 import { useHistory } from '@/state/history';
 import { useSession } from '@/state/session';
@@ -17,22 +16,18 @@ import { useTheme } from '@/theme';
 /** C3–C6 · Resultado do link nas 4 variações do semáforo. */
 export default function LinkResult() {
   const t = useTheme();
-  const { link, setLink } = useSession();
+  const { link } = useSession();
   const { markEvidence } = useHistory();
   const [saved, setSaved] = useState(false);
   if (!link) return <Redirect href="/link" />;
   const { result } = link;
   const lvl = result.level;
 
-  const share = () => shareSystem(buildShareText(result, `Link verificado (não clique): ${link.input}`));
+  const share = () => shareSystem(buildShareText(result, 'Peça ajuda para conferir o endereço no seu próprio celular.'));
   const again = () => router.replace('/link');
   const save = () => {
     if (link.historyId) markEvidence(link.historyId);
     setSaved(true);
-  };
-  const retry = async () => {
-    const online = await isOnline();
-    setLink({ ...link, result: analyzeLink(link.input, { offline: !online }) });
   };
 
   const footer = (() => {
@@ -70,7 +65,7 @@ export default function LinkResult() {
       default:
         return (
           <>
-            <Button label="Tentar com internet" height={52} size={16} onPress={retry} />
+            <Button label="Confirmar canal oficial" height={52} size={16} onPress={() => router.push('/canal-oficial')} />
             <Button variant="secondary" label="Nova análise" height={48} size={15} onPress={again} />
           </>
         );
@@ -80,7 +75,7 @@ export default function LinkResult() {
   return (
     <ResultScreen
       result={result}
-      statusRight={result.notice ? '⚠ sem internet' : undefined}
+      statusRight="ANÁLISE LOCAL"
       header={<RiskHeader level={lvl} subtitle={lvl === 'high' ? LEVEL_COPY.high.reminder : undefined} />}
       footer={footer}
     >

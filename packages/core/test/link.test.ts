@@ -18,6 +18,11 @@ describe('parseLink', () => {
     expect(parseLink('olá tudo bem')).toBeNull();
     expect(parseLink('')).toBeNull();
   });
+  it('recusa endereços HTTP malformados', () => {
+    for (const input of ['https:example.com', 'https://exa mple.com', 'https://evil.com:abc', 'https://evil.com:80:90']) {
+      expect(parseLink(input)).toBeNull();
+    }
+  });
 });
 
 describe('analyzeLink', () => {
@@ -51,10 +56,10 @@ describe('analyzeLink', () => {
   it('javascript: → alto risco', () => {
     expect(analyzeLink('javascript:alert(1)').level).toBe('high');
   });
-  it('entrada inválida → inconclusivo com aviso offline', () => {
+  it('entrada inválida → inconclusivo com aviso de análise local', () => {
     const r = analyzeLink('isso não é um link');
     expect(r.level).toBe('unknown');
-    expect(r.notice).toContain('conecte-se à internet');
+    expect(r.notice).toContain('regras locais');
   });
   it('nunca mostra mais de 5 sinais', () => {
     const r = analyzeLink('http://a.b.c.itau-bradesco-caixa-nubank.top/login/verificar/pix/token/x?a=1&b=2&c=3&d=4&e=5');
