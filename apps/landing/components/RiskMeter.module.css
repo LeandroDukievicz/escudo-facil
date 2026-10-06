@@ -1,9 +1,0 @@
-.meter {
-  display: inline-flex;
-  gap: 5px;
-}
-.meter span {
-  width: 38px;
-  height: 10px;
-  border-radius: 6px;
-}

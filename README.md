@@ -26,7 +26,7 @@ O app funciona como um **semáforo anti-golpe**:
 - [App mobile (`apps/mobile`)](#app-mobile-appsmobile)
 - [Motor anti-golpe (`packages/core`)](#motor-anti-golpe-packagescore)
 - [Design tokens (`packages/tokens`)](#design-tokens-packagestokens)
-- [Deploy na Vercel](#deploy-na-vercel)
+- [Deploy no GitHub Pages](#deploy-no-github-pages)
 - [Acessibilidade](#acessibilidade)
 - [Privacidade e segurança](#privacidade-e-segurança)
 - [Fluxo de branches e versões](#fluxo-de-branches-e-versões)
@@ -39,7 +39,7 @@ O app funciona como um **semáforo anti-golpe**:
 ```
 escudo-facil/
 ├── apps/
-│   ├── landing/        # Landing page em Next.js 16 (export estático)
+│   ├── landing/        # Landing page em HTML, CSS e JavaScript puro
 │   └── mobile/         # App em React Native + Expo (expo-router)
 ├── packages/
 │   ├── core/           # Motor anti-golpe offline (TypeScript puro + testes)
@@ -67,7 +67,7 @@ Gerenciado com **npm workspaces** (Node ≥ 20.19, ver `.nvmrc`).
                        │            │
           ┌────────────┴───┐   ┌────┴─────────────────┐
           │  apps/landing  │   │     apps/mobile      │
-          │  Next.js SSG   │   │  Expo + RN + router  │
+          │  GitHub Pages  │   │  Expo + RN + router  │
           │  demo ao vivo  │   │  offline-first       │
           │  no navegador  │   │  AsyncStorage, voz,  │
           └────────────────┘   │  OCR, compartilhar   │
@@ -86,7 +86,7 @@ Gerenciado com **npm workspaces** (Node ≥ 20.19, ver `.nvmrc`).
 2. **Offline-first**. Toda a análise básica acontece no aparelho. A internet só é usada para recursos que de fato precisam dela (IA, reputação de URL, sincronização familiar).
 3. **IA como camada opcional**. O contrato (`AiAnalysisRequest/Response`) e o prompt de sistema vivem no core, versionados junto com as regras de copy. A chave do provedor de IA fica **sempre no backend**, nunca no app.
 4. **Tokens compartilhados**. Landing (variáveis CSS geradas no build) e app (StyleSheet) usam a mesma paleta, então o semáforo é idêntico nas duas pontas.
-5. **TypeScript estrito em tudo**. Os pacotes internos são publicados como TS fonte (transpilados por Next/Metro), o que dispensa etapa de build nos pacotes.
+5. **TypeScript no motor e no app mobile; JavaScript puro na landing**. O script `scripts/build-static-core.mjs` gera módulos ES para o navegador a partir das regras do `@escudo/core`, sem bibliotecas no site publicado.
 
 ## Como rodar
 
@@ -100,10 +100,10 @@ npm install
 # 3. Testes do motor anti-golpe
 npm test
 
-# 4. Landing page em modo desenvolvimento → http://localhost:3000
+# 4. Landing page estática → http://localhost:3000
 npm run dev:landing
 
-# 5. Build estático da landing → apps/landing/out
+# 5. Atualizar os módulos JavaScript do motor usados pela landing
 npm run build:landing
 
 # 6. App mobile (Expo) → Expo Go, emulador ou navegador
@@ -115,25 +115,17 @@ npm run typecheck
 
 ## Landing page (`apps/landing`)
 
-Next.js 16 (App Router) com `output: 'export'`: gera HTML estático que pode ser hospedado em qualquer CDN.
+HTML, CSS e JavaScript sem React, Next.js ou dependências no navegador. Os arquivos publicados ficam em `apps/landing/site/`. O demo usa módulos JavaScript gerados a partir do motor TypeScript compartilhado; após alterar `packages/core/src`, execute `npm run build:landing` e inclua os arquivos gerados no commit.
 
 | Seção | Componente | O que mostra |
 |---|---|---|
-| Cabeçalho | `Header` | Navegação sempre visível (sem menu escondido), rolável no celular |
-| Hero | `Hero` | "Antes de clicar, verifique." + réplica da Home do app |
-| Como funciona | `HowItWorks` | As 3 ações grandes e o fluxo ideal em 7 passos |
-| **Experimente** | `TryIt` + `demo/LiveDemo` | **Demonstração real**: verifica link ou mensagem no navegador com o `@escudo/core` |
-| Semáforo | `TrafficLight` | Os 4 níveis (cor + ícone + texto) e a regra "nunca dizer seguro" |
-| Não me pressione | `NoPressure` | Respiração guiada contra a pressa do golpista |
-| Família | `Family` | Pedir ajuda grátis via WhatsApp e Modo Família (Plus, com consentimento) |
-| Privacidade | `Privacy` | Selo de privacidade, matriz offline/online/IA e máscara de dados |
-| Acessibilidade | `Accessibility` + `A11yBar` | Recursos e barra fixa com texto grande, alto contraste e leitura em voz alta |
-| Emergência | `Emergency` | "Acho que caí em golpe" + orientação para Pix (MED) |
-| Planos | `Plans` | Grátis × Plus, sem dark pattern |
-| Dúvidas | `Faq` | Perguntas frequentes com `<details>` |
-| Baixar / Rodapé | `Download`, `Footer` | Chamada final e links |
+| Cabeçalho e apresentação | `index.html` | Navegação visível e chamada para verificar |
+| Demonstração | `js/app.js` + `js/core/` | Análise real de links e mensagens, no navegador |
+| Semáforo | `index.html` | Quatro níveis explicados por cor, ícone e texto |
+| Privacidade e acessibilidade | `index.html`, `styles.css`, `js/app.js` | Texto grande, contraste, leitura em voz alta e sem envio do texto analisado |
+| Família, emergência, planos e dúvidas | `index.html` | Orientações, recursos disponíveis e itens em desenvolvimento |
 
-**Demonstração ao vivo:** abas "Verificar link" e "Verificar mensagem", botão "Colar", exemplos prontos, carregamento em etapas, resultado em camadas (título → explicação → sinais → o que fazer agora → detalhes técnicos recolhidos), trechos suspeitos destacados, "Mandar para familiar" (Web Share/WhatsApp) e "Ouvir resultado" (Web Speech API, pt-BR).
+**Demonstração ao vivo:** abas "Verificar link" e "Verificar mensagem", exemplos prontos, resultado com sinais, orientações e detalhes técnicos, trechos suspeitos destacados, compartilhamento do resultado (sem o texto original) e leitura em voz alta quando o navegador oferece Web Speech API.
 
 ## App mobile (`apps/mobile`)
 
@@ -177,15 +169,11 @@ Testes: `npm test -w @escudo/core` (Vitest).
 
 Paleta extraída do wireframe: azul confiança `#2563a8`, semáforo (`#1f9d57`, `#e7b200`, `#d23b3b`, `#9aa5b1`), roxo para IA `#6d4ea8`, tema de alto contraste (preto/branco/amarelo `#ffe14d`), tipografia **Asap** (e **Gaegu** só para anotações na landing), raios, espaçamentos e alvos de toque (mínimo 48px).
 
-## Deploy na Vercel
+## Deploy no GitHub Pages
 
-A landing já tem `apps/landing/vercel.json` configurado para o monorepo:
+O workflow `.github/workflows/pages.yml` publica diretamente `apps/landing/site/`, sem instalar pacotes nem compilar a página na publicação. No repositório, ative **Settings → Pages → Build and deployment → Source: GitHub Actions**. Pushes na `main` que alterem o site executam o deploy; também é possível acioná-lo em **Actions → GitHub Pages → Run workflow**.
 
-1. Acesse **vercel.com/new** e importe o repositório `LeandroDukievicz/escudo-facil`.
-2. Em **Root Directory**, escolha `apps/landing` (framework detectado: Next.js).
-3. Clique em **Deploy**.
-
-A cada push em `main` a Vercel publica em produção; cada PR ganha uma URL de preview.
+Endereço esperado após a primeira publicação: `https://leandrodukievicz.github.io/escudo-facil/`. Os caminhos dos arquivos são relativos para funcionar nesse subdiretório.
 
 ## Acessibilidade
 
@@ -206,7 +194,7 @@ A cada push em `main` a Vercel publica em produção; cada PR ganha uma URL de p
 
 ## Fluxo de branches e versões
 
-- `main`: sempre estável e publicável (produção da landing na Vercel).
+- `main`: sempre estável e publicável (produção da landing no GitHub Pages).
 - `feat/*`: uma branch por entrega (`feat/landing`, `feat/mobile`…), com um commit por tela/feature e PR para `main`.
 - Tags semânticas por entrega (`landing-v0.1.0`, `mobile-v0.1.0`…).
 - Commits no padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/) (`feat(landing): …`, `fix(core): …`).

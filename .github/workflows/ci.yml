@@ -19,5 +19,7 @@ jobs:
         run: npm test -w @escudo/core
       - name: Typecheck
         run: npm run typecheck
-      - name: Build da landing
+      - name: Gerar motor JavaScript da landing
         run: npm run build:landing
+      - name: Conferir módulos gerados
+        run: git diff --exit-code -- apps/landing/site/js/core
