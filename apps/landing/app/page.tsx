@@ -5,6 +5,7 @@ import { TrafficLight } from '@/components/TrafficLight';
 import { TryIt } from '@/components/TryIt';
 import { NoPressure } from '@/components/NoPressure';
 import { Family } from '@/components/Family';
+import { Privacy } from '@/components/Privacy';
 
 export default function Page() {
   return (
@@ -17,6 +18,7 @@ export default function Page() {
         <TrafficLight />
         <NoPressure />
         <Family />
+        <Privacy />
       </main>
     </>
   );
