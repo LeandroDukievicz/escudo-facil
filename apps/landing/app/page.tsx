@@ -10,6 +10,9 @@ import { Emergency } from '@/components/Emergency';
 import { Accessibility } from '@/components/Accessibility';
 import { A11yBar } from '@/components/A11yBar';
 import { Plans } from '@/components/Plans';
+import { Faq } from '@/components/Faq';
+import { Download } from '@/components/Download';
+import { Footer } from '@/components/Footer';
 
 export default function Page() {
   return (
@@ -26,7 +29,10 @@ export default function Page() {
         <Accessibility />
         <Emergency />
         <Plans />
+        <Faq />
+        <Download />
       </main>
+      <Footer />
       <A11yBar />
     </>
   );
