@@ -1,5 +1,5 @@
 import { LEARN_CARDS } from '@escudo/core';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { AppText } from '@/components/AppText';
 import { Screen } from '@/components/Screen';
@@ -10,7 +10,8 @@ import { useTheme } from '@/theme';
 /** F3 · Aprender — cards curtos com checklist de aprendizado. */
 export default function Learn() {
   const t = useTheme();
-  const { learned } = useLearned();
+  const { learned, reload } = useLearned();
+  useFocusEffect(reload);
   return (
     <Screen
       edges={['top']}

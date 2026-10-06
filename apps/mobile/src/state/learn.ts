@@ -6,9 +6,10 @@ const KEY = 'escudo:learned';
 /** Checklist de aprendizado: cards marcados com "Entendi". */
 export function useLearned() {
   const [learned, setLearned] = useState<string[]>([]);
-  useEffect(() => {
-    readArray<string>(KEY).then(setLearned);
+  const reload = useCallback(() => {
+    void readArray<string>(KEY).then(setLearned);
   }, []);
+  useEffect(reload, [reload]);
   const markLearned = useCallback((id: string) => {
     setLearned((prev) => {
       if (prev.includes(id)) return prev;
@@ -17,5 +18,5 @@ export function useLearned() {
       return next;
     });
   }, []);
-  return { learned, markLearned };
+  return { learned, markLearned, reload };
 }
