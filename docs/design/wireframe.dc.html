@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Asap:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { background:#e8eaed; }
+  * { box-sizing:border-box; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</helmet>
+
+<!-- ===================== MASTHEAD ===================== -->
+<div style="position:absolute;left:80px;top:40px;width:680px;font-family:'Asap',system-ui,sans-serif">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="width:52px;height:52px;border-radius:14px;background:#2563a8;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;border:2px solid #1f2a37">🛡️</div>
+    <div>
+      <div style="font-family:'Gaegu',cursive;font-size:34px;font-weight:700;color:#16263a;line-height:1">Escudo Fácil — Wireframe</div>
+      <div style="font-size:14px;color:#52606d;margin-top:2px">App anti-golpe para pessoas leigas, idosos e familiares · Semáforo de risco · Português (BR)</div>
+    </div>
+  </div>
+  <div style="font-family:'Gaegu',cursive;font-size:16px;color:#6b7280;margin-top:10px;line-height:1.35">Fluxo completo, baixa fidelidade. Cor + ícone + texto sempre juntos. Linguagem de risco, nunca garantia absoluta.</div>
+</div>
+
+<!-- ===================== LEGENDA ===================== -->
+<div style="position:absolute;left:840px;top:40px;width:560px;background:#fff;border:2px solid #1f2a37;border-radius:14px;padding:14px 16px;font-family:'Asap',sans-serif;box-shadow:0 3px 10px rgba(0,0,0,.08)">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#16263a;margin-bottom:10px">Legenda dos selos</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:12px;color:#3b4754">
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span> funciona sem internet</div>
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span> precisa de internet</div>
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">IA</span> usa análise com IA</div>
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span> recurso gratuito</div>
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#fdf4dc;color:#a87a00;border:1px solid #e7d08a">PLUS</span> plano pago</div>
+    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;background:#fbe9e9;color:#c0392b;border:1px solid #e6b3ad">LOGIN</span> exige login</div>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:12px;padding-top:10px;border-top:1px dashed #c7cfd9;font-size:11px;color:#52606d;flex-wrap:wrap">
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:13px;height:13px;border-radius:4px;background:#1f9d57;border:1px solid #1f2a37"></span>Baixo risco</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:13px;height:13px;border-radius:4px;background:#e7b200;border:1px solid #1f2a37"></span>Atenção</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:13px;height:13px;border-radius:4px;background:#d23b3b;border:1px solid #1f2a37"></span>Alto risco</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:13px;height:13px;border-radius:4px;background:#9aa5b1;border:1px solid #1f2a37"></span>Inconclusivo</span>
+  </div>
+</div>
+
+<!-- ===================== SECTION A HEADER ===================== -->
+<div style="position:absolute;left:80px;top:400px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">A · Entrada sem cadastro &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">abrir e usar na hora</span></div>
+
+<!-- ===== A1 Onboarding 1 ===== -->
+<div style="position:absolute;left:80px;top:470px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">A1 · Onboarding</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">SEM LOGIN</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center">
+      <div style="width:96px;height:96px;border-radius:26px;background:#e9f1fb;border:2px solid #2563a8;display:flex;align-items:center;justify-content:center;font-size:48px">🛡️</div>
+      <div style="font-size:24px;font-weight:800;color:#16263a;margin-top:24px">Escudo Fácil</div>
+      <div style="font-size:22px;font-weight:700;color:#16263a;margin-top:18px;line-height:1.25">Antes de clicar,<br>verifique.</div>
+      <div style="font-size:15px;color:#52606d;margin-top:12px;line-height:1.4">Analise links, prints e mensagens suspeitas em poucos segundos.</div>
+    </div>
+    <div style="padding:0 22px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="height:58px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;border:2px solid #1f2a37">Começar agora</div>
+      <div style="display:flex;gap:6px;align-items:center;justify-content:center;font-size:14px;color:#2563a8;text-decoration:underline">Como funciona?</div>
+      <div style="display:flex;gap:5px;justify-content:center;margin-top:2px"><span style="width:9px;height:9px;border-radius:9px;background:#2563a8"></span><span style="width:9px;height:9px;border-radius:9px;background:#cbd5e1"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== A2 Onboarding 2 ===== -->
+<div style="position:absolute;left:480px;top:470px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">A2 · Sem cadastro</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">SEM LOGIN</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;padding:26px 24px;gap:18px">
+      <div style="width:84px;height:84px;border-radius:22px;background:#e8f6ee;border:2px solid #1f9d57;display:flex;align-items:center;justify-content:center;font-size:42px">🔓</div>
+      <div style="font-size:23px;font-weight:800;color:#16263a;line-height:1.2">Você não precisa criar conta.</div>
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:16px;color:#34404d">
+        <div style="display:flex;gap:10px"><span style="color:#1f9d57;font-weight:800">✓</span> As verificações básicas funcionam sem login.</div>
+        <div style="display:flex;gap:10px"><span style="color:#1f9d57;font-weight:800">✓</span> Seus dados ficam só neste celular.</div>
+        <div style="display:flex;gap:10px"><span style="color:#6b7280;font-weight:800">•</span> Login só é necessário para plano pago, histórico na nuvem e recursos de família.</div>
+      </div>
+    </div>
+    <div style="padding:0 22px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="height:58px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;border:2px solid #1f2a37">Usar sem conta</div>
+      <div style="text-align:center;font-size:14px;color:#52606d;text-decoration:underline">Já tenho conta</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== A3 Acessibilidade ===== -->
+<div style="position:absolute;left:880px;top:470px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">A3 · Acessibilidade</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:18px 22px;border-bottom:2px solid #eef1f4;display:flex;align-items:center;gap:12px"><span style="font-size:22px">⚙️</span><span style="font-size:21px;font-weight:800;color:#16263a">Como você prefere usar</span></div>
+    <div style="flex:1;padding:18px 22px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:#16263a;font-weight:600">🔠 Texto grande</span><span style="width:52px;height:30px;border-radius:30px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:flex-end;padding:0 3px"><span style="width:22px;height:22px;border-radius:22px;background:#fff"></span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:#16263a;font-weight:600">🌗 Alto contraste</span><span style="width:52px;height:30px;border-radius:30px;background:#cbd5e1;border:2px solid #1f2a37;display:flex;align-items:center;padding:0 3px"><span style="width:22px;height:22px;border-radius:22px;background:#fff"></span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:17px;color:#16263a;font-weight:600">🔊 Ler em voz alta</span><span style="width:52px;height:30px;border-radius:30px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:flex-end;padding:0 3px"><span style="width:22px;height:22px;border-radius:22px;background:#fff"></span></span></div>
+      <div style="border:2px dashed #c7cfd9;border-radius:14px;padding:14px;background:#f7f9fb">
+        <div style="font-size:13px;color:#6b7280;margin-bottom:8px">Tamanho do texto</div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px;color:#52606d">A</span><div style="flex:1;height:6px;border-radius:6px;background:#cbd5e1;position:relative"><span style="position:absolute;left:62%;top:-7px;width:20px;height:20px;border-radius:20px;background:#2563a8;border:2px solid #1f2a37"></span></div><span style="font-size:24px;color:#52606d;font-weight:800">A</span></div>
+      </div>
+    </div>
+    <div style="padding:0 22px 22px"><div style="height:54px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;border:2px solid #1f2a37">Salvar e continuar</div></div>
+  </div>
+</div>
+
+<!-- ===== A4 Selo de privacidade ===== -->
+<div style="position:absolute;left:1280px;top:470px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">A4 · Selo de privacidade</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:18px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:20px;font-weight:800;color:#16263a">Sua privacidade</span></div>
+    <div style="flex:1;padding:6px 22px;display:flex;flex-direction:column;gap:14px">
+      <div style="border:2px solid #1f9d57;border-radius:16px;background:#e8f6ee;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
+        <div style="font-size:40px">🔒</div>
+        <div style="font-size:18px;font-weight:800;color:#16263a">Você está no controle</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:22px">📵</span><div><div style="font-size:16px;font-weight:700;color:#16263a">Análise básica no aparelho</div><div style="font-size:14px;color:#52606d">Links, prints e checklist funcionam sem enviar nada para a internet.</div></div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:22px">🤖</span><div><div style="font-size:16px;font-weight:700;color:#16263a">Você escolhe quando usar IA</div><div style="font-size:14px;color:#52606d">Avisamos sempre antes de enviar algo para a nuvem.</div></div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:22px">🧹</span><div><div style="font-size:16px;font-weight:700;color:#16263a">Você pode apagar tudo</div><div style="font-size:14px;color:#52606d">Apague seu histórico e dados quando quiser.</div></div></div>
+    </div>
+    <div style="padding:0 22px 22px"><div style="height:54px;border-radius:14px;background:#fff;color:#16263a;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;border:2px solid #1f2a37">Entendi</div></div>
+  </div>
+</div>
+
+<!-- ===================== SECTION B HEADER ===================== -->
+<div style="position:absolute;left:80px;top:1240px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">B · Home e navegação &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">só 3 ações grandes</span></div>
+
+<!-- ===== B1 Home clara ===== -->
+<div style="position:absolute;left:80px;top:1310px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">B1 · Home (versão clara)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">SEM LOGIN</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:14px 22px 8px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:9px;background:#2563a8;display:flex;align-items:center;justify-content:center;font-size:16px">🛡️</span><span style="font-size:15px;font-weight:800;color:#16263a">Escudo Fácil</span></div>
+      <span style="font-size:20px">🔊</span>
+    </div>
+    <div style="padding:4px 22px 12px"><div style="font-size:22px;font-weight:800;color:#16263a;line-height:1.2">O que você quer<br>verificar?</div></div>
+    <div style="flex:1;padding:0 18px;display:flex;flex-direction:column;gap:13px">
+      <div style="border:2px solid #1f2a37;border-radius:18px;background:#e9f1fb;padding:16px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">🔗</span><div><div style="font-size:19px;font-weight:800;color:#16263a">Verificar link</div><div style="font-size:13px;color:#52606d">Cole um link sem abrir</div></div></div>
+      <div style="border:2px solid #1f2a37;border-radius:18px;background:#e8f6ee;padding:16px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">🖼️</span><div><div style="font-size:19px;font-weight:800;color:#16263a">Verificar print</div><div style="font-size:13px;color:#52606d">Mande a foto da conversa</div></div></div>
+      <div style="border:2px solid #1f2a37;border-radius:18px;background:#fdf4dc;padding:16px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">💬</span><div><div style="font-size:19px;font-weight:800;color:#16263a">Recebi proposta suspeita</div><div style="font-size:13px;color:#52606d">A gente pergunta, você responde</div></div></div>
+      <div style="border:2px dashed #2563a8;border-radius:16px;padding:13px;display:flex;align-items:center;justify-content:center;gap:9px;color:#2563a8;font-size:16px;font-weight:700">👨‍👩‍👧 Pedir ajuda para familiar</div>
+    </div>
+    <div style="display:flex;border-top:2px solid #1f2a37;margin-top:10px">
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;font-weight:700;color:#2563a8">🏠<br>Início</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">🕘<br>Histórico</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">📚<br>Aprender</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">❓<br>Ajuda</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== B2 Home alto contraste ===== -->
+<div style="position:absolute;left:480px;top:1310px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">B2 · Home (alto contraste + texto grande)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#1f2a37;color:#ffe14d;border:1px solid #1f2a37">ACESSÍVEL</span></div>
+  </div>
+  <div style="background:#000;border:2px solid #000;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.2);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:12px;font-weight:800;color:#fff"><span>9:41</span><span>100%</span></div>
+    <div style="padding:14px 20px 10px;border-bottom:2px solid #fff;display:flex;justify-content:space-between;align-items:center"><span style="font-size:18px;font-weight:800;color:#ffe14d">🛡️ Escudo Fácil</span><span style="font-size:24px;color:#fff">🔊</span></div>
+    <div style="padding:14px 20px 6px"><div style="font-size:25px;font-weight:800;color:#fff;line-height:1.15">O que você quer verificar?</div></div>
+    <div style="flex:1;padding:6px 18px;display:flex;flex-direction:column;gap:14px">
+      <div style="border:3px solid #fff;border-radius:14px;background:#0b3d91;padding:18px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">🔗</span><span style="font-size:22px;font-weight:800;color:#fff">Verificar link</span></div>
+      <div style="border:3px solid #fff;border-radius:14px;background:#0d6b35;padding:18px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">🖼️</span><span style="font-size:22px;font-weight:800;color:#fff">Verificar print</span></div>
+      <div style="border:3px solid #fff;border-radius:14px;background:#8a6100;padding:18px;display:flex;align-items:center;gap:14px"><span style="font-size:34px">💬</span><span style="font-size:21px;font-weight:800;color:#fff;line-height:1.1">Proposta suspeita</span></div>
+    </div>
+    <div style="display:flex;border-top:3px solid #fff">
+      <div style="flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:800;color:#ffe14d">🏠<br>Início</div>
+      <div style="flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:700;color:#fff">🕘<br>Histórico</div>
+      <div style="flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:700;color:#fff">📚<br>Aprender</div>
+      <div style="flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:700;color:#fff">❓<br>Ajuda</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== B3 Pedir ajuda para familiar ===== -->
+<div style="position:absolute;left:880px;top:1310px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">B3 · Pedir ajuda para familiar</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">SEM LOGIN p/ enviar</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:19px;font-weight:800;color:#16263a">Pedir ajuda</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:16px;color:#34404d;line-height:1.4">Você pode mandar essa análise para alguém de confiança verificar com você.</div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:14px;background:#f7f9fb">
+        <div style="font-size:12px;color:#6b7280;margin-bottom:6px">Mensagem pronta</div>
+        <div style="font-size:15px;color:#16263a;line-height:1.4">"Oi, pode me ajudar a verificar isso? O app marcou como suspeito."</div>
+      </div>
+      <div style="font-size:13px;color:#6b7280;margin-top:4px">Escolher contato de confiança</div>
+      <div style="display:flex;gap:10px"><div style="flex:1;border:2px solid #1f2a37;border-radius:14px;padding:12px;text-align:center;font-size:14px;font-weight:700;color:#16263a">👩 Filha<br><span style="font-size:11px;color:#6b7280;font-weight:400">Ana</span></div><div style="flex:1;border:2px dashed #c7cfd9;border-radius:14px;padding:12px;text-align:center;font-size:14px;color:#6b7280">＋<br>Adicionar</div></div>
+    </div>
+    <div style="padding:0 22px 22px;display:flex;flex-direction:column;gap:10px">
+      <div style="height:56px;border-radius:14px;background:#1f9d57;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:18px;font-weight:800;border:2px solid #1f2a37">💬 Enviar pelo WhatsApp</div>
+      <div style="text-align:center;font-size:13px;color:#6b7280">Modo Família com alertas → exige login (Plus)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== B4 Modo Família ===== -->
+<div style="position:absolute;left:1280px;top:1310px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">B4 · Modo Família (config)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fdf4dc;color:#a87a00;border:1px solid #e7d08a">PLUS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fbe9e9;color:#c0392b;border:1px solid #e6b3ad">LOGIN</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:19px;font-weight:800;color:#16263a">Modo Família 👨‍👩‍👧</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:13px">
+      <div style="border:2px solid #2563a8;border-radius:14px;background:#e9f1fb;padding:13px;font-size:14px;color:#16263a;line-height:1.4">Um familiar de confiança pode receber um alerta quando você marcar algo como <b>muito suspeito</b>.</div>
+      <div style="border:2px solid #d9a300;border-radius:14px;background:#fdf4dc;padding:13px;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#7a5b00"><span style="font-size:18px">✋</span><div>Só funciona com <b>consentimento dos dois</b>. O familiar precisa aceitar o convite.</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:4px"><span style="font-size:16px;color:#16263a;font-weight:600">Avisar quando eu marcar "muito suspeito"</span><span style="width:52px;height:30px;border-radius:30px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:flex-end;padding:0 3px"><span style="width:22px;height:22px;border-radius:22px;background:#fff"></span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;color:#16263a;font-weight:600">Relatório mensal para a família</span><span style="width:52px;height:30px;border-radius:30px;background:#cbd5e1;border:2px solid #1f2a37;display:flex;align-items:center;padding:0 3px"><span style="width:22px;height:22px;border-radius:22px;background:#fff"></span></span></div>
+    </div>
+    <div style="padding:0 22px 22px"><div style="height:56px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;border:2px solid #1f2a37">Entrar / Criar conta</div></div>
+  </div>
+</div>
+
+<!-- ===================== SECTION C HEADER ===================== -->
+<div style="position:absolute;left:80px;top:2080px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">C · Verificar link &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">o app nunca abre o link · 4 resultados em semáforo</span></div>
+
+<!-- ===== C1 Verificar link (input) ===== -->
+<div style="position:absolute;left:80px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">C1 · Verificar link</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:19px;font-weight:800;color:#16263a">🔗 Verificar link</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:14px">
+      <div style="font-size:16px;color:#34404d">Cole aqui o link que você recebeu:</div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;min-height:88px;padding:14px;font-size:14px;color:#9aa5b1;background:#f7f9fb">http://...</div>
+      <div style="height:52px;border-radius:14px;border:2px solid #2563a8;color:#2563a8;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;background:#e9f1fb">📋 Colar link copiado</div>
+      <div style="border:2px solid #d9a300;border-radius:14px;background:#fdf4dc;padding:12px;display:flex;gap:10px;align-items:center;font-size:13px;color:#7a5b00"><span style="font-size:20px">🚫</span> O app <b>não abre</b> o link durante a análise. Você fica protegido.</div>
+      <div style="border:1px dashed #c7cfd9;border-radius:12px;padding:10px;font-size:12px;color:#6b7280">Ex.: <span style="color:#c0392b">http://seu-banco.verifique-conta<b>.xyz</b>/login</span> — endereço estranho</div>
+    </div>
+    <div style="padding:0 22px 22px"><div style="height:58px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;border:2px solid #1f2a37">Verificar sem abrir</div></div>
+  </div>
+</div>
+
+<!-- ===== C2 Loading ===== -->
+<div style="position:absolute;left:480px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">C2 · Verificando…</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE p/ completo</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;gap:22px">
+      <div style="width:88px;height:88px;border-radius:88px;border:5px solid #e9f1fb;border-top-color:#2563a8;animation:spin 1.1s linear infinite"></div>
+      <div style="font-size:21px;font-weight:800;color:#16263a">Verificando sinais<br>de risco…</div>
+      <div style="display:flex;flex-direction:column;gap:12px;width:100%;text-align:left">
+        <div style="display:flex;gap:10px;align-items:center;font-size:15px;color:#1f9d57"><span>✓</span> Analisando padrão do endereço</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:15px;color:#1f9d57"><span>✓</span> Procurando link encurtado / disfarçado</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:15px;color:#2563a8;font-weight:700"><span>◐</span> Comparando com listas de segurança</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:15px;color:#9aa5b1"><span>○</span> Verificando redirecionamentos</div>
+      </div>
+    </div>
+    <div style="padding:0 22px 22px;text-align:center;font-size:13px;color:#6b7280">Sem internet? Fazemos a análise básica no aparelho.</div>
+  </div>
+</div>
+
+<!-- ===== C3 Resultado VERDE ===== -->
+<div style="position:absolute;left:880px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#1f9d57">C3 · Resultado · BAIXO RISCO</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">IA</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#e8f6ee;border-bottom:2px solid #1f9d57;padding:20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
+      <div style="width:74px;height:74px;border-radius:74px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:38px">✓</div>
+      <div style="font-size:20px;font-weight:800;color:#0d6b35;line-height:1.15">Nenhum sinal grave encontrado agora</div>
+      <div style="display:flex;gap:5px"><span style="width:38px;height:10px;border-radius:6px;background:#1f9d57"></span><span style="width:38px;height:10px;border-radius:6px;background:#dfe5ec"></span><span style="width:38px;height:10px;border-radius:6px;background:#dfe5ec"></span></div>
+    </div>
+    <div style="flex:1;padding:14px 22px;overflow:hidden;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:14px;color:#34404d;line-height:1.4">A análise não encontrou indícios fortes de golpe neste link. Mesmo assim, confirme se o endereço é o site oficial antes de informar dados ou pagar.</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:6px">O que foi analisado</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#34404d">
+          <div style="display:flex;gap:8px"><span style="color:#1f9d57">✓</span> Endereço sem disfarces ou erros de digitação</div>
+          <div style="display:flex;gap:8px"><span style="color:#1f9d57">✓</span> Não está em listas de risco conhecidas</div>
+        </div>
+      </div>
+      <div style="border:2px solid #d9a300;border-radius:12px;background:#fdf4dc;padding:11px;font-size:13px;color:#7a5b00;line-height:1.35"><b>Continue atento.</b> Não envie senha, código ou dinheiro sem confirmar pelo canal oficial.</div>
+      <div style="border:1px solid #dfe5ec;border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280">Ver detalhes técnicos <span>▾</span></div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:50px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid #1f2a37">Confirmar canal oficial</div>
+      <div style="display:flex;gap:9px"><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16263a">Compartilhar</div><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16263a">Nova análise</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C4 Resultado AMARELO ===== -->
+<div style="position:absolute;left:1280px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#c08a00">C4 · Resultado · ATENÇÃO</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">IA</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#fdf4dc;border-bottom:2px solid #d9a300;padding:20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
+      <div style="width:74px;height:74px;border-radius:74px;background:#e7b200;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:40px">⚠️</div>
+      <div style="font-size:20px;font-weight:800;color:#8a6100;line-height:1.15">Atenção: sinais suspeitos</div>
+      <div style="display:flex;gap:5px"><span style="width:38px;height:10px;border-radius:6px;background:#e7b200"></span><span style="width:38px;height:10px;border-radius:6px;background:#e7b200"></span><span style="width:38px;height:10px;border-radius:6px;background:#dfe5ec"></span></div>
+    </div>
+    <div style="flex:1;padding:14px 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-size:14px;color:#34404d;line-height:1.4">Encontramos sinais que costumam aparecer em golpes. Pode ser golpe — melhor confirmar por outro canal antes de continuar.</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:6px">Sinais encontrados</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#34404d">
+          <div style="display:flex;gap:8px"><span style="color:#d9a300">⚠</span> Link encurtado, esconde o endereço real</div>
+          <div style="display:flex;gap:8px"><span style="color:#d9a300">⚠</span> Texto com pressa: "regularize agora"</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:6px">O que fazer agora</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:#34404d">
+          <div style="display:flex;gap:8px"><span>🚫</span> Não clique e não pague ainda</div>
+          <div style="display:flex;gap:8px"><span>📞</span> Procure a empresa pelo canal oficial</div>
+        </div>
+      </div>
+      <div style="border:1px solid #dfe5ec;border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280">Ver detalhes técnicos <span>▾</span></div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:50px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;border:2px solid #1f2a37">👨‍👩‍👧 Mandar para familiar</div>
+      <div style="display:flex;gap:9px"><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16263a">Salvar prova</div><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16263a">Nova análise</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C5 Resultado VERMELHO ===== -->
+<div style="position:absolute;left:1680px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#c0392b">C5 · Resultado · ALTO RISCO</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">IA</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#fbe9e9;border-bottom:2px solid #d23b3b;padding:20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
+      <div style="width:74px;height:74px;border-radius:74px;background:#d23b3b;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:40px">🛑</div>
+      <div style="font-size:21px;font-weight:800;color:#a02020;line-height:1.15">Alto risco de golpe</div>
+      <div style="font-size:13px;color:#a02020;font-weight:700">Não clique · Não pague · Não envie dados</div>
+      <div style="display:flex;gap:5px"><span style="width:38px;height:10px;border-radius:6px;background:#d23b3b"></span><span style="width:38px;height:10px;border-radius:6px;background:#d23b3b"></span><span style="width:38px;height:10px;border-radius:6px;background:#d23b3b"></span></div>
+    </div>
+    <div style="flex:1;padding:14px 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-size:14px;color:#34404d;line-height:1.4">Este link tem vários sinais fortes de golpe. Ele tenta se passar por uma instituição para roubar seus dados ou seu dinheiro.</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:6px">Sinais encontrados</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:#34404d">
+          <div style="display:flex;gap:8px"><span style="color:#d23b3b">●</span> Endereço imita um banco, mas termina em ".xyz"</div>
+          <div style="display:flex;gap:8px"><span style="color:#d23b3b">●</span> Pede senha e código do banco</div>
+          <div style="display:flex;gap:8px"><span style="color:#d23b3b">●</span> Ameaça: "sua conta será bloqueada"</div>
+        </div>
+      </div>
+      <div style="border:1px solid #dfe5ec;border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280">Ver detalhes técnicos <span>▾</span></div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;border:2px solid #1f2a37">🚫 Não clique nesse link</div>
+      <div style="display:flex;gap:9px"><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Mandar p/ familiar</div><div style="flex:1;height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Denunciar</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C6 Resultado CINZA ===== -->
+<div style="position:absolute;left:2080px;top:2150px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#6b7280">C6 · Resultado · INCONCLUSIVO</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>⚠ sem internet</span></div>
+    <div style="background:#eef1f4;border-bottom:2px solid #9aa5b1;padding:20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px">
+      <div style="width:74px;height:74px;border-radius:74px;background:#9aa5b1;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:38px">❔</div>
+      <div style="font-size:20px;font-weight:800;color:#475063;line-height:1.15">Não foi possível confirmar</div>
+      <div style="display:flex;gap:5px"><span style="width:38px;height:10px;border-radius:6px;background:#9aa5b1"></span><span style="width:38px;height:10px;border-radius:6px;background:#dfe5ec"></span><span style="width:38px;height:10px;border-radius:6px;background:#dfe5ec"></span></div>
+    </div>
+    <div style="flex:1;padding:14px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:14px;color:#34404d;line-height:1.4">Não conseguimos verificar este link agora. Isso não quer dizer que é seguro — apenas que não dá para confirmar.</div>
+      <div style="border:2px solid #d9a300;border-radius:12px;background:#fdf4dc;padding:11px;display:flex;gap:9px;font-size:13px;color:#7a5b00"><span style="font-size:18px">📶</span><div>Análise básica feita no aparelho. Para uma verificação mais completa, <b>conecte-se à internet</b>.</div></div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:6px">O que fazer agora</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:13px;color:#34404d">
+          <div style="display:flex;gap:8px"><span>🏛️</span> Procure a fonte oficial (site ou telefone)</div>
+          <div style="display:flex;gap:8px"><span>👨‍👩‍👧</span> Fale com uma pessoa de confiança</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:50px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid #1f2a37">Tentar com internet</div>
+      <div style="height:46px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#16263a">Nova análise</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION D HEADER ===================== -->
+<div style="position:absolute;left:80px;top:2920px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">D · Verificar print &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">OCR local · trechos destacados · máscara de dados</span></div>
+
+<!-- ===== D1 Verificar print ===== -->
+<div style="position:absolute;left:80px;top:2990px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">D1 · Verificar print</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OCR OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:19px;font-weight:800;color:#16263a">🖼️ Verificar print</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:13px">
+      <div style="border:2px solid #1f2a37;border-radius:14px;background:#e8f6ee;padding:18px;display:flex;align-items:center;gap:14px"><span style="font-size:32px">🖼️</span><div style="font-size:18px;font-weight:800;color:#16263a">Escolher print da galeria</div></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;background:#e9f1fb;padding:18px;display:flex;align-items:center;gap:14px"><span style="font-size:32px">📷</span><div style="font-size:17px;font-weight:800;color:#16263a;line-height:1.15">Tirar foto da tela de outro celular</div></div>
+      <div style="border:1px dashed #c7cfd9;border-radius:12px;padding:12px;font-size:13px;color:#52606d;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:8px"><span>✓</span> Envie uma imagem nítida da conversa</div>
+        <div style="display:flex;gap:8px"><span>✓</span> Não precisa cortar a imagem</div>
+        <div style="display:flex;gap:8px"><span>✓</span> Você pode esconder dados pessoais</div>
+      </div>
+      <div style="border:2px solid #2563a8;border-radius:14px;background:#e9f1fb;padding:13px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;font-weight:700;color:#16263a;line-height:1.2">🛡️ Ocultar CPF, telefone<br>e e-mail automaticamente</span><span style="width:48px;height:28px;border-radius:28px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:flex-end;padding:0 3px"><span style="width:20px;height:20px;border-radius:20px;background:#fff"></span></span></div>
+    </div>
+    <div style="padding:0 22px 22px"><div style="height:56px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;border:2px solid #1f2a37">Analisar print</div></div>
+  </div>
+</div>
+
+<!-- ===== D2 Máscara de dados ===== -->
+<div style="position:absolute;left:480px;top:2990px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">D2 · Máscara de dados (antes da IA)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">ANTES DA IA</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:18px;font-weight:800;color:#16263a">Proteger seus dados</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-size:15px;color:#34404d;line-height:1.4">Antes de enviar para a IA, vamos esconder seus dados pessoais. <b>Você decide.</b></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;background:#f7f9fb;font-size:13px;color:#34404d;line-height:1.6">
+        Olá, aqui é do banco.<br>Confirme seu CPF <span style="background:#1f2a37;color:#1f2a37;border-radius:3px">███.███.███-██</span><br>e o código <span style="background:#1f2a37;color:#1f2a37;border-radius:3px">██████</span> que enviamos.<br>Tel: <span style="background:#1f2a37;color:#1f2a37;border-radius:3px">(██) █████-████</span>
+      </div>
+      <div style="font-size:12px;color:#6b7280">Ocultar automaticamente:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:13px;padding:7px 12px;border-radius:20px;background:#e8f6ee;border:2px solid #1f9d57;color:#0d6b35;font-weight:700">✓ CPF</span>
+        <span style="font-size:13px;padding:7px 12px;border-radius:20px;background:#e8f6ee;border:2px solid #1f9d57;color:#0d6b35;font-weight:700">✓ Telefone</span>
+        <span style="font-size:13px;padding:7px 12px;border-radius:20px;background:#e8f6ee;border:2px solid #1f9d57;color:#0d6b35;font-weight:700">✓ E-mail</span>
+        <span style="font-size:13px;padding:7px 12px;border-radius:20px;background:#e8f6ee;border:2px solid #1f9d57;color:#0d6b35;font-weight:700">✓ Chave Pix</span>
+        <span style="font-size:13px;padding:7px 12px;border-radius:20px;background:#f7f9fb;border:2px solid #c7cfd9;color:#6b7280">＋ Endereço</span>
+      </div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#6d4ea8;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;border:2px solid #1f2a37">🤖 Enviar protegido para IA</div>
+      <div style="text-align:center;font-size:13px;color:#6b7280;text-decoration:underline">Analisar só no aparelho (sem IA)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== D3 Resultado do print ===== -->
+<div style="position:absolute;left:880px;top:2990px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#c0392b">D3 · Resultado do print</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#efe9f7;color:#6d4ea8;border:1px solid #c8b6e2">IA</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">+ OCR OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#fbe9e9;border-bottom:2px solid #d23b3b;padding:14px 22px;display:flex;align-items:center;gap:12px">
+      <div style="width:50px;height:50px;border-radius:50px;background:#d23b3b;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:26px">🛑</div>
+      <div><div style="font-size:18px;font-weight:800;color:#a02020">Alto risco de golpe</div><div style="font-size:12px;color:#a02020">Mensagem com vários sinais</div></div>
+    </div>
+    <div style="flex:1;padding:12px 18px;display:flex;flex-direction:column;gap:9px;overflow:hidden">
+      <div style="border:2px solid #1f2a37;border-radius:12px;background:#f7f9fb;padding:10px;font-size:11.5px;color:#475063;line-height:1.5;position:relative">
+        <span style="background:#ffd5d5;border-bottom:2px solid #d23b3b">Sua conta será bloqueada hoje</span>. Confirme o <span style="background:#fff0c7;border-bottom:2px solid #d9a300">código</span> e a <span style="background:#fff0c7;border-bottom:2px solid #d9a300">senha</span> ou <span style="background:#ffd5d5;border-bottom:2px solid #d23b3b">faça um Pix de R$ 250</span> para regularizar. <span style="background:#e3d7f5;border-bottom:2px solid #6d4ea8">bit.ly/xy7</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:#34404d"><span style="font-size:9px;padding:2px 7px;border-radius:12px;background:#fbe9e9;color:#c0392b;font-weight:800;border:1px solid #e6b3ad">URGÊNCIA</span> "será bloqueada hoje"</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:#34404d"><span style="font-size:9px;padding:2px 7px;border-radius:12px;background:#fdf4dc;color:#a87a00;font-weight:800;border:1px solid #e7d08a">SENHA/CÓDIGO</span> pede dado do banco</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:#34404d"><span style="font-size:9px;padding:2px 7px;border-radius:12px;background:#fbe9e9;color:#c0392b;font-weight:800;border:1px solid #e6b3ad">PEDE PIX</span> R$ 250</div>
+        <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:#34404d"><span style="font-size:9px;padding:2px 7px;border-radius:12px;background:#efe9f7;color:#6d4ea8;font-weight:800;border:1px solid #c8b6e2">LINK OCULTO</span> encurtado</div>
+      </div>
+      <div style="font-size:12.5px;color:#34404d;line-height:1.4;background:#e9f1fb;border-radius:10px;padding:9px">A mensagem tenta fazer você agir com pressa e pede dados que <b>bancos e órgãos oficiais não pedem</b> por mensagem.</div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;border:2px solid #1f2a37">Não sei o que fazer →</div>
+      <div style="display:flex;gap:9px"><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Mandar p/ familiar</div><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Salvar prova</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== D4 Passo a passo de segurança ===== -->
+<div style="position:absolute;left:1280px;top:2990px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">D4 · "Não sei o que fazer" → passo a passo</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 8px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:18px;font-weight:800;color:#16263a">Passo a passo seguro</span><span style="margin-left:auto;font-size:22px">🔊</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="font-size:15px;color:#34404d;line-height:1.35">Calma. Faça uma coisa de cada vez:</div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="width:30px;height:30px;border-radius:30px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">1</span><div style="font-size:15px;color:#16263a;padding-top:3px">Não responda e não clique no link.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="width:30px;height:30px;border-radius:30px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">2</span><div style="font-size:15px;color:#16263a;padding-top:3px">Não envie senha, código ou Pix.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="width:30px;height:30px;border-radius:30px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">3</span><div style="font-size:15px;color:#16263a;padding-top:3px">Ligue para o banco pelo número oficial do cartão.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start"><span style="width:30px;height:30px;border-radius:30px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">4</span><div style="font-size:15px;color:#16263a;padding-top:3px">Fale com um familiar de confiança.</div></div>
+      <div style="border:2px solid #1f9d57;border-radius:12px;background:#e8f6ee;padding:11px;font-size:13.5px;color:#0d6b35;line-height:1.35">✅ <b>Você fez certo em verificar antes</b> de agir.</div>
+    </div>
+    <div style="padding:0 18px 18px"><div style="height:54px;border-radius:13px;background:#1f9d57;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;border:2px solid #1f2a37">💬 Mandar para familiar</div></div>
+  </div>
+</div>
+
+<!-- ===================== SECTION E HEADER ===================== -->
+<div style="position:absolute;left:80px;top:3760px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">E · Recebi uma proposta suspeita &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">perguntas grandes Sim / Não / Não sei</span></div>
+
+<!-- ===== E1 Pergunta 1 ===== -->
+<div style="position:absolute;left:80px;top:3830px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">E1 · Pergunta 1 de 8</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 4px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:13px;color:#6b7280;font-weight:700">Pergunta 1 de 8</span></div>
+    <div style="padding:0 22px"><div style="height:8px;border-radius:8px;background:#dfe5ec;overflow:hidden"><div style="width:12%;height:100%;background:#2563a8"></div></div></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px;text-align:center;gap:8px">
+      <div style="font-size:46px">💰</div>
+      <div style="font-size:25px;font-weight:800;color:#16263a;line-height:1.2">Estão pedindo dinheiro, Pix ou boleto?</div>
+    </div>
+    <div style="padding:0 22px 24px;display:flex;flex-direction:column;gap:12px">
+      <div style="height:60px;border-radius:14px;background:#fbe9e9;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;color:#a02020">👍 Sim</div>
+      <div style="height:60px;border-radius:14px;background:#e8f6ee;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;color:#0d6b35">👎 Não</div>
+      <div style="height:54px;border-radius:14px;background:#eef1f4;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;font-weight:800;color:#475063">🤔 Não sei</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== E2 Pergunta meio ===== -->
+<div style="position:absolute;left:480px;top:3830px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">E2 · Pergunta 4 de 8</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">EXEMPLOS: senha · urgência · instalar app</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 4px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:13px;color:#6b7280;font-weight:700">Pergunta 4 de 8</span></div>
+    <div style="padding:0 22px"><div style="height:8px;border-radius:8px;background:#dfe5ec;overflow:hidden"><div style="width:50%;height:100%;background:#2563a8"></div></div></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px;text-align:center;gap:8px">
+      <div style="font-size:46px">🏦</div>
+      <div style="font-size:24px;font-weight:800;color:#16263a;line-height:1.2">A pessoa se passou por banco, governo, parente ou empresa?</div>
+    </div>
+    <div style="padding:0 22px 16px;display:flex;flex-direction:column;gap:12px">
+      <div style="height:60px;border-radius:14px;background:#fbe9e9;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;color:#a02020">👍 Sim</div>
+      <div style="height:60px;border-radius:14px;background:#e8f6ee;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:800;color:#0d6b35">👎 Não</div>
+      <div style="height:54px;border-radius:14px;background:#eef1f4;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;font-weight:800;color:#475063">🤔 Não sei</div>
+    </div>
+    <div style="padding:0 22px 16px;text-align:center;font-size:12px;color:#9aa5b1">Demais perguntas: senha/código · urgência · link · oferta boa demais · conhece a pessoa · instalar app</div>
+  </div>
+</div>
+
+<!-- ===== E3 Resultado proposta ===== -->
+<div style="position:absolute;left:880px;top:3830px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#c08a00">E3 · Resultado da proposta</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#fdf4dc;border-bottom:2px solid #d9a300;padding:20px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px">
+      <div style="width:70px;height:70px;border-radius:70px;background:#e7b200;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:36px">⚠️</div>
+      <div style="font-size:22px;font-weight:800;color:#8a6100;line-height:1.15">Melhor parar antes<br>de continuar</div>
+      <div style="font-size:14px;color:#8a6100">Risco alto pelas suas respostas</div>
+    </div>
+    <div style="flex:1;padding:16px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="background:#f7f9fb;border:2px solid #1f2a37;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:13px;color:#6b7280">Sinais que você marcou</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:12px;padding:6px 11px;border-radius:18px;background:#fbe9e9;color:#c0392b;font-weight:700;border:1px solid #e6b3ad">Pede Pix</span>
+          <span style="font-size:12px;padding:6px 11px;border-radius:18px;background:#fbe9e9;color:#c0392b;font-weight:700;border:1px solid #e6b3ad">Urgência</span>
+          <span style="font-size:12px;padding:6px 11px;border-radius:18px;background:#fbe9e9;color:#c0392b;font-weight:700;border:1px solid #e6b3ad">Se passou por banco</span>
+          <span style="font-size:12px;padding:6px 11px;border-radius:18px;background:#fbe9e9;color:#c0392b;font-weight:700;border:1px solid #e6b3ad">Não conhece</span>
+        </div>
+      </div>
+      <div style="font-size:14px;color:#34404d;line-height:1.4">Quando vários desses sinais aparecem juntos, costuma ser golpe. Não pague e não envie dados sem confirmar pelo canal oficial.</div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid #1f2a37">Ver orientação</div>
+      <div style="display:flex;gap:9px"><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Mandar p/ familiar</div><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16263a">Salvar prova</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== E4 Modo Não me pressione ===== -->
+<div style="position:absolute;left:1280px;top:3830px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#2563a8">E4 · Modo "Não me pressione"</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">DIFERENCIAL</span></div>
+  </div>
+  <div style="background:#0b2740;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#cfe0f0"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;gap:18px">
+      <div style="font-size:60px">🌬️</div>
+      <div style="font-size:26px;font-weight:800;color:#fff;line-height:1.2">Respire.<br>Não pague agora.</div>
+      <div style="width:120px;height:120px;border-radius:120px;border:3px solid #6fa8e0;display:flex;align-items:center;justify-content:center;color:#cfe0f0;font-size:15px;line-height:1.3">inspire<br>e expire</div>
+      <div style="font-size:16px;color:#cfe0f0;line-height:1.45">Golpes usam <b style="color:#ffd97a">pressa</b> para impedir você de pensar. Você tem o direito de checar com calma.</div>
+    </div>
+    <div style="padding:0 22px 24px;display:flex;flex-direction:column;gap:11px">
+      <div style="height:56px;border-radius:14px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;border:2px solid #6fa8e0">Verificar pelo canal oficial</div>
+      <div style="text-align:center;font-size:14px;color:#9fc2e6;text-decoration:underline">Falar com alguém de confiança</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== E5 Checklist anti-golpe ===== -->
+<div style="position:absolute;left:1680px;top:3830px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">E5 · Checklist anti-golpe</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 6px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:18px;font-weight:800;color:#16263a">✅ Checklist anti-golpe</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:9px">
+      <div style="font-size:13px;color:#6b7280">Marque o que está acontecendo:</div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #d23b3b;border-radius:12px;padding:11px;background:#fbe9e9"><span style="width:26px;height:26px;border-radius:7px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">✓</span><span style="font-size:14.5px;color:#16263a;font-weight:600">Pediram sua senha?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #d23b3b;border-radius:12px;padding:11px;background:#fbe9e9"><span style="width:26px;height:26px;border-radius:7px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">✓</span><span style="font-size:14.5px;color:#16263a;font-weight:600">Pediram um código?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #c7cfd9;border-radius:12px;padding:11px"><span style="width:26px;height:26px;border-radius:7px;border:2px solid #c7cfd9"></span><span style="font-size:14.5px;color:#16263a;font-weight:600">Pediram Pix urgente?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #c7cfd9;border-radius:12px;padding:11px"><span style="width:26px;height:26px;border-radius:7px;border:2px solid #c7cfd9"></span><span style="font-size:14.5px;color:#16263a;font-weight:600">O link parece estranho?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #c7cfd9;border-radius:12px;padding:11px"><span style="width:26px;height:26px;border-radius:7px;border:2px solid #c7cfd9"></span><span style="font-size:14.5px;color:#16263a;font-weight:600">A pessoa quer segredo?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #c7cfd9;border-radius:12px;padding:11px"><span style="width:26px;height:26px;border-radius:7px;border:2px solid #c7cfd9"></span><span style="font-size:14.5px;color:#16263a;font-weight:600">Oferta boa demais?</span></div>
+      <div style="display:flex;gap:11px;align-items:center;border:2px solid #c7cfd9;border-radius:12px;padding:11px"><span style="width:26px;height:26px;border-radius:7px;border:2px solid #c7cfd9"></span><span style="font-size:14.5px;color:#16263a;font-weight:600">Número desconhecido?</span></div>
+    </div>
+    <div style="padding:12px 18px 18px"><div style="background:#fbe9e9;border:2px solid #d23b3b;border-radius:12px;padding:11px;text-align:center;font-size:13.5px;color:#a02020;font-weight:700">2 sinais marcados → cuidado. Não envie nada ainda.</div></div>
+  </div>
+</div>
+
+<!-- ===================== SECTION F HEADER ===================== -->
+<div style="position:absolute;left:80px;top:4600px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">F · Histórico e Aprender &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">histórico local grátis · nuvem só no Plus</span></div>
+
+<!-- ===== F1 Histórico sem login ===== -->
+<div style="position:absolute;left:80px;top:4670px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">F1 · Histórico (sem login)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">LOCAL</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 8px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:19px;font-weight:800;color:#16263a">🕘 Histórico</span></div>
+    <div style="padding:0 22px 10px"><div style="border:1px dashed #c7cfd9;border-radius:10px;padding:9px;font-size:12px;color:#6b7280;display:flex;gap:7px"><span>📱</span> Seu histórico fica apenas neste celular.</div></div>
+    <div style="flex:1;padding:0 22px;display:flex;flex-direction:column;gap:10px">
+      <div style="border:2px solid #1f2a37;border-radius:12px;padding:11px;display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:34px;background:#fbe9e9;border:1px solid #e6b3ad;display:flex;align-items:center;justify-content:center">🛑</span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:#16263a">Link · alto risco</div><div style="font-size:12px;color:#6b7280">Hoje, 14:20</div></div><span style="font-size:18px;color:#9aa5b1">›</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:12px;padding:11px;display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:34px;background:#fdf4dc;border:1px solid #e7d08a;display:flex;align-items:center;justify-content:center">⚠️</span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:#16263a">Print · atenção</div><div style="font-size:12px;color:#6b7280">Ontem, 19:05</div></div><span style="font-size:18px;color:#9aa5b1">›</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:12px;padding:11px;display:flex;align-items:center;gap:11px"><span style="width:34px;height:34px;border-radius:34px;background:#e8f6ee;border:1px solid #a7ddbd;display:flex;align-items:center;justify-content:center">✓</span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:#16263a">Link · baixo risco</div><div style="font-size:12px;color:#6b7280">2 dias atrás</div></div><span style="font-size:18px;color:#9aa5b1">›</span></div>
+    </div>
+    <div style="padding:12px 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:48px;border-radius:13px;border:2px solid #d23b3b;color:#c0392b;display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:800">🗑️ Apagar tudo</div>
+      <div style="text-align:center;font-size:12px;color:#6b7280">Pede confirmação antes de apagar</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== F2 Histórico com login / Plus ===== -->
+<div style="position:absolute;left:480px;top:4670px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">F2 · Histórico na nuvem (Plus)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fdf4dc;color:#a87a00;border:1px solid #e7d08a">PLUS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fbe9e9;color:#c0392b;border:1px solid #e6b3ad">LOGIN</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 8px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:18px;font-weight:800;color:#16263a">🕘 Histórico · Plus</span></div>
+    <div style="flex:1;padding:0 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="border:2px solid #1f9d57;border-radius:12px;background:#e8f6ee;padding:11px;display:flex;gap:9px;align-items:center;font-size:13px;color:#0d6b35"><span>☁️</span> Protegido na nuvem e sincronizado.</div>
+      <div style="border:2px solid #2563a8;border-radius:12px;background:#e9f1fb;padding:12px">
+        <div style="font-size:13px;font-weight:800;color:#16263a;margin-bottom:7px">📊 Relatório do mês</div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#34404d"><span>12 verificações</span><span style="color:#c0392b;font-weight:700">3 alto risco</span></div>
+        <div style="display:flex;gap:4px;margin-top:8px;height:34px;align-items:flex-end"><span style="flex:1;height:40%;background:#1f9d57;border-radius:3px"></span><span style="flex:1;height:70%;background:#e7b200;border-radius:3px"></span><span style="flex:1;height:100%;background:#d23b3b;border-radius:3px"></span><span style="flex:1;height:55%;background:#1f9d57;border-radius:3px"></span><span style="flex:1;height:80%;background:#e7b200;border-radius:3px"></span></div>
+      </div>
+      <div style="border:2px solid #1f2a37;border-radius:12px;padding:11px;display:flex;align-items:center;gap:11px"><span style="font-size:22px">👨‍👩‍👧</span><div style="flex:1"><div style="font-size:13.5px;font-weight:700;color:#16263a">Alertas para a família</div><div style="font-size:11.5px;color:#6b7280">Ana foi avisada · 1 alerta</div></div><span style="width:44px;height:26px;border-radius:26px;background:#1f9d57;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:flex-end;padding:0 3px"><span style="width:18px;height:18px;border-radius:18px;background:#fff"></span></span></div>
+    </div>
+    <div style="padding:14px 18px 18px"><div style="height:48px;border-radius:13px;border:2px solid #1f2a37;color:#16263a;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">Baixar relatório (PDF)</div></div>
+  </div>
+</div>
+
+<!-- ===== F3 Aprender ===== -->
+<div style="position:absolute;left:880px;top:4670px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">F3 · Aprender</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 6px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:19px;font-weight:800;color:#16263a">📚 Aprender</span><span style="font-size:12px;color:#1f9d57;font-weight:700">2 de 6 ✓</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px;background:#e8f6ee"><span style="font-size:28px">🔑</span><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#16263a">Nunca envie código do banco</div></div><span style="color:#1f9d57;font-size:20px">✓</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px;background:#e8f6ee"><span style="font-size:28px">💬</span><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#16263a">Banco não pede senha por WhatsApp</div></div><span style="color:#1f9d57;font-size:20px">✓</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px"><span style="font-size:28px">⏰</span><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#16263a">Desconfie de urgência</div></div><span style="color:#9aa5b1;font-size:18px">›</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px"><span style="font-size:28px">🔍</span><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#16263a">Confira o endereço do site</div></div><span style="color:#9aa5b1;font-size:18px">›</span></div>
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px"><span style="font-size:28px">🎁</span><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#16263a">Promoção boa demais merece pausa</div></div><span style="color:#9aa5b1;font-size:18px">›</span></div>
+    </div>
+    <div style="display:flex;border-top:2px solid #1f2a37">
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">🏠<br>Início</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">🕘<br>Histórico</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;font-weight:700;color:#2563a8">📚<br>Aprender</div>
+      <div style="flex:1;padding:9px 0;text-align:center;font-size:11px;color:#6b7280">❓<br>Ajuda</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== F4 Card Aprender detalhe ===== -->
+<div style="position:absolute;left:1280px;top:4670px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">F4 · Card de aprendizado</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">🔊 VOZ</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 6px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:13px;color:#6b7280;font-weight:700">3 de 6</span><span style="margin-left:auto;font-size:22px">🔊</span></div>
+    <div style="flex:1;padding:8px 22px;display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center">
+      <div style="width:100%;height:150px;border:2px dashed #c7cfd9;border-radius:16px;background:#f7f9fb;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#9aa5b1"><span style="font-size:48px">⏰</span><span style="font-size:12px">[ ilustração simples ]</span></div>
+      <div style="font-size:24px;font-weight:800;color:#16263a;line-height:1.2">Desconfie de urgência</div>
+      <div style="font-size:16px;color:#34404d;line-height:1.5">Golpista usa <b>medo, pressa e promessa</b> para você não pensar. Mensagem que diz "agora ou nunca" merece uma pausa.</div>
+    </div>
+    <div style="padding:0 22px 24px;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;gap:5px;justify-content:center;margin-bottom:4px"><span style="width:8px;height:8px;border-radius:8px;background:#cbd5e1"></span><span style="width:8px;height:8px;border-radius:8px;background:#cbd5e1"></span><span style="width:22px;height:8px;border-radius:8px;background:#2563a8"></span><span style="width:8px;height:8px;border-radius:8px;background:#cbd5e1"></span></div>
+      <div style="height:56px;border-radius:14px;background:#1f9d57;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;border:2px solid #1f2a37">Entendi 👍</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION G HEADER ===================== -->
+<div style="position:absolute;left:80px;top:5470px;font-family:'Gaegu',cursive;font-size:26px;font-weight:700;color:#16263a">G · Emergência, planos e voz &nbsp;—&nbsp; <span style="font-size:18px;color:#6b7280">"caí em golpe" · pagamento sem dark pattern</span></div>
+
+<!-- ===== G1 Emergência ===== -->
+<div style="position:absolute;left:80px;top:5540px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#c0392b">G1 · "Acho que caí em golpe"</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">OFFLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="background:#fbe9e9;border-bottom:2px solid #d23b3b;padding:16px 22px;display:flex;align-items:center;gap:12px"><span style="font-size:30px">🆘</span><div style="font-size:18px;font-weight:800;color:#a02020;line-height:1.15">Acho que caí em golpe. O que faço agora?</div></div>
+    <div style="flex:1;padding:12px 22px;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">1</span><span style="font-size:14px;color:#16263a;padding-top:2px">Pare de conversar com a pessoa.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">2</span><span style="font-size:14px;color:#16263a;padding-top:2px">Não envie mais dinheiro.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">3</span><span style="font-size:14px;color:#16263a;padding-top:2px">Tire prints e salve comprovantes.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">4</span><span style="font-size:14px;color:#16263a;padding-top:2px">Ligue para o banco pelo número oficial.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">5</span><span style="font-size:14px;color:#16263a;padding-top:2px">Troque senhas se enviou dados.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">6</span><span style="font-size:14px;color:#16263a;padding-top:2px">Registre um boletim de ocorrência.</span></div>
+      <div style="display:flex;gap:10px;align-items:flex-start"><span style="width:26px;height:26px;border-radius:26px;background:#d23b3b;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0">7</span><span style="font-size:14px;color:#16263a;padding-top:2px">Avise um familiar de confiança.</span></div>
+    </div>
+    <div style="padding:6px 18px 18px;display:flex;flex-direction:column;gap:8px">
+      <div style="height:50px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;border:2px solid #1f2a37">Gerar lista do que aconteceu</div>
+      <div style="display:flex;gap:8px"><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#16263a">Orientação Pix</div><div style="flex:1;height:44px;border-radius:13px;border:2px solid #1f2a37;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#16263a">Compartilhar</div></div>
+      <div style="height:42px;border-radius:13px;border:2px solid #d23b3b;color:#c0392b;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">🧹 Apagar dados sensíveis do app</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== G2 Lista gerada ===== -->
+<div style="position:absolute;left:480px;top:5540px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">G2 · Lista do que aconteceu</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">PARA B.O. / BANCO</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 6px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:17px;font-weight:800;color:#16263a">📄 Resumo do caso</span></div>
+    <div style="flex:1;padding:4px 22px;display:flex;flex-direction:column;gap:11px">
+      <div style="border:2px solid #1f2a37;border-radius:14px;padding:14px;background:#f7f9fb;display:flex;flex-direction:column;gap:9px">
+        <div style="font-size:11px;color:#6b7280;border-bottom:1px dashed #c7cfd9;padding-bottom:6px">Gerado pelo Escudo Fácil · 27/06 14:25</div>
+        <div style="font-size:13px;color:#16263a"><b>O que houve:</b> mensagem falsa do "banco" pedindo Pix e código.</div>
+        <div style="font-size:13px;color:#16263a"><b>Canal:</b> WhatsApp, número desconhecido.</div>
+        <div style="font-size:13px;color:#16263a"><b>Valor enviado:</b> R$ 250 via Pix.</div>
+        <div style="font-size:13px;color:#16263a"><b>Sinais:</b> urgência, pedido de senha, link encurtado.</div>
+        <div style="font-size:13px;color:#16263a"><b>Provas:</b> 2 prints salvos.</div>
+      </div>
+      <div style="border:2px solid #1f9d57;border-radius:12px;background:#e8f6ee;padding:11px;font-size:12.5px;color:#0d6b35">Leve este resumo ao banco e ao boletim de ocorrência. Ele organiza tudo para você.</div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#1f9d57;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:800;border:2px solid #1f2a37">💬 Compartilhar com familiar</div>
+      <div style="height:46px;border-radius:13px;border:2px solid #1f2a37;color:#16263a;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">Salvar em PDF</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== G3 Planos ===== -->
+<div style="position:absolute;left:880px;top:5540px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">G3 · Planos (sem dark pattern)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS continua</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fdf4dc;color:#a87a00;border:1px solid #e7d08a">PLUS opcional</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:14px 22px 6px;text-align:center"><div style="font-size:18px;font-weight:800;color:#16263a">Você pode continuar grátis</div><div style="font-size:13px;color:#52606d;margin-top:2px">O plano pago adiciona proteção, mas <b>não é obrigatório</b>.</div></div>
+    <div style="flex:1;padding:6px 18px;display:flex;flex-direction:column;gap:11px">
+      <div style="border:2px solid #1f9d57;border-radius:14px;padding:13px;background:#e8f6ee">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:800;color:#0d6b35">Grátis</span><span style="font-size:13px;color:#0d6b35;font-weight:700">R$ 0</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;font-size:12.5px;color:#34404d">
+          <div style="display:flex;gap:7px"><span style="color:#1f9d57">✓</span> Verificação básica offline</div>
+          <div style="display:flex;gap:7px"><span style="color:#1f9d57">✓</span> Análise de links e prints (regras locais)</div>
+          <div style="display:flex;gap:7px"><span style="color:#1f9d57">✓</span> Histórico no aparelho</div>
+        </div>
+      </div>
+      <div style="border:2px solid #d9a300;border-radius:14px;padding:13px;background:#fdf4dc">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:16px;font-weight:800;color:#8a6100">Plus ⭐</span><span style="font-size:13px;color:#8a6100;font-weight:700">R$ /mês</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;font-size:12.5px;color:#34404d">
+          <div style="display:flex;gap:7px"><span style="color:#d9a300">＋</span> Análise avançada com IA</div>
+          <div style="display:flex;gap:7px"><span style="color:#d9a300">＋</span> Histórico protegido na nuvem</div>
+          <div style="display:flex;gap:7px"><span style="color:#d9a300">＋</span> Alertas e modo cuidador (família)</div>
+          <div style="display:flex;gap:7px"><span style="color:#d9a300">＋</span> Relatório de risco · explicações por voz</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#2563a8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid #1f2a37">Ver planos</div>
+      <div style="height:46px;border-radius:13px;border:2px solid #1f2a37;color:#16263a;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800">Continuar grátis</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== G4 Pagamento / login ===== -->
+<div style="position:absolute;left:1280px;top:5540px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">G4 · Login + pagamento</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#fbe9e9;color:#c0392b;border:1px solid #e6b3ad">LOGIN só aqui</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e9f1fb;color:#2563a8;border:1px solid #a9c6e8">ONLINE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="padding:16px 22px 6px;display:flex;align-items:center;gap:10px"><span style="font-size:20px;color:#2563a8">‹</span><span style="font-size:18px;font-weight:800;color:#16263a">Assinar o Plus</span></div>
+    <div style="flex:1;padding:6px 22px;display:flex;flex-direction:column;gap:13px">
+      <div style="border:2px solid #1f2a37;border-radius:12px;background:#f7f9fb;padding:11px;font-size:12.5px;color:#52606d">É a primeira vez que pedimos seus dados. Login só serve para o plano pago e a sincronização.</div>
+      <div><div style="font-size:13px;color:#6b7280;margin-bottom:5px">E-mail</div><div style="border:2px solid #1f2a37;border-radius:12px;height:50px;display:flex;align-items:center;padding:0 14px;font-size:14px;color:#9aa5b1">voce@email.com</div></div>
+      <div><div style="font-size:13px;color:#6b7280;margin-bottom:5px">Senha</div><div style="border:2px solid #1f2a37;border-radius:12px;height:50px;display:flex;align-items:center;padding:0 14px;font-size:14px;color:#9aa5b1">••••••••</div></div>
+      <div style="border:2px solid #d9a300;border-radius:12px;background:#fdf4dc;padding:11px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;font-weight:800;color:#8a6100">Plus · mensal</span><span style="font-size:14px;font-weight:800;color:#8a6100">R$ /mês</span></div>
+      <div style="font-size:11.5px;color:#6b7280;line-height:1.4">Sem cobrança escondida. Você pode cancelar quando quiser e continuar no plano grátis.</div>
+    </div>
+    <div style="padding:0 18px 18px;display:flex;flex-direction:column;gap:9px">
+      <div style="height:52px;border-radius:13px;background:#1f9d57;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;border:2px solid #1f2a37">Continuar para pagamento</div>
+      <div style="text-align:center;font-size:14px;color:#2563a8;text-decoration:underline">Agora não, continuar grátis</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== G5 Ler em voz alta ===== -->
+<div style="position:absolute;left:1680px;top:5540px;width:320px;font-family:'Asap',sans-serif">
+  <div data-drags-parent="1" style="position:absolute;top:-44px;left:0">
+    <div style="font-family:'Gaegu',cursive;font-size:17px;font-weight:700;color:#16263a">G5 · Ler em voz alta (sobreposição)</div>
+    <div style="display:flex;gap:5px;margin-top:3px"><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#e8f6ee;color:#1f9d57;border:1px solid #a7ddbd">GRÁTIS</span><span style="font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eef1f4;color:#6b7280;border:1px solid #c7cfd9">ACESSIBILIDADE</span></div>
+  </div>
+  <div style="background:#fff;border:2px solid #1f2a37;border-radius:30px;overflow:hidden;box-shadow:0 6px 22px rgba(20,30,50,.12);height:680px;display:flex;flex-direction:column;position:relative">
+    <div style="display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:11px;font-weight:700;color:#1f2a37"><span>9:41</span><span>▮▮▮ 100%</span></div>
+    <div style="flex:1;padding:14px 22px;filter:blur(1px);opacity:.5">
+      <div style="background:#fbe9e9;border:2px solid #d23b3b;border-radius:14px;padding:14px;margin-bottom:10px"><div style="font-size:16px;font-weight:800;color:#a02020">Alto risco de golpe</div></div>
+      <div style="height:14px;background:#e5e9ef;border-radius:6px;margin-bottom:8px"></div>
+      <div style="height:14px;background:#e5e9ef;border-radius:6px;width:80%;margin-bottom:8px"></div>
+      <div style="height:14px;background:#e5e9ef;border-radius:6px;width:60%"></div>
+    </div>
+    <div style="position:absolute;left:18px;right:18px;bottom:18px;background:#0b2740;border:2px solid #1f2a37;border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px;color:#fff">
+      <div style="display:flex;align-items:center;gap:12px"><span style="width:50px;height:50px;border-radius:50px;background:#2563a8;display:flex;align-items:center;justify-content:center;font-size:26px">🔊</span><div><div style="font-size:16px;font-weight:800">Lendo o resultado…</div><div style="font-size:12px;color:#9fc2e6">"Alto risco de golpe. Não clique…"</div></div></div>
+      <div style="display:flex;gap:3px;align-items:center;height:26px">
+        <span style="flex:1;height:40%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:90%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:60%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:100%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:50%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:80%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:35%;background:#6fa8e0;border-radius:2px"></span><span style="flex:1;height:70%;background:#6fa8e0;border-radius:2px"></span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div style="flex:1;height:48px;border-radius:12px;background:#fff;color:#0b2740;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800">⏸ Pausar</div>
+        <div style="width:48px;height:48px;border-radius:12px;border:2px solid #6fa8e0;display:flex;align-items:center;justify-content:center;font-size:18px">🐢</div>
+        <div style="width:48px;height:48px;border-radius:12px;border:2px solid #6fa8e0;display:flex;align-items:center;justify-content:center;font-size:16px">✕</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== POST-ITS DE UX ===================== -->
+<div style="position:absolute;left:1700px;top:510px;width:280px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(-1.2deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">📌 Sem login na entrada</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">O usuário abre e usa as 3 funções na hora. <b>Login só aparece</b> em: Modo Família (B4), Histórico na nuvem (F2) e Pagamento (G4). Em nenhum outro lugar.</div>
+</div>
+
+<div style="position:absolute;left:1700px;top:1360px;width:280px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(1deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">📌 Só 3 ações na Home</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">Nada de menu cheio. Cards enormes, ícone + texto, alvos &gt; 48px. A versão alto contraste (B2) usa fundo preto e amarelo, sem depender de cor para o risco.</div>
+</div>
+
+<div style="position:absolute;left:2480px;top:2200px;width:290px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(-1.4deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">⚠️ Nunca dizer "seguro"</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">O verde diz <b>"Nenhum sinal grave encontrado agora"</b> — nunca "link seguro" ou "100% confiável". Sempre linguagem de risco. Detalhes técnicos ficam recolhidos para não assustar.</div>
+</div>
+
+<div style="position:absolute;left:1700px;top:3030px;width:280px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(1.1deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">🔒 Máscara antes da IA</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">OCR roda <b>offline</b>. Antes de mandar para a IA (online), o app oculta CPF, telefone, e-mail e Pix (D2). O usuário sempre escolhe enviar ou ficar só no aparelho.</div>
+</div>
+
+<div style="position:absolute;left:2080px;top:3870px;width:285px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(-1deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">🧭 Tom sem julgamento</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">"Melhor parar antes de continuar", "Você fez certo em verificar". Nunca "você caiu em golpe". O Modo Não me pressione (E4) combate a pressa do golpista.</div>
+</div>
+
+<div style="position:absolute;left:1700px;top:4710px;width:280px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(1.3deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">📂 Histórico opcional</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">Sem login: fica <b>só no celular</b>, com botão "apagar tudo" (confirmação). Nuvem, relatório mensal e alertas de família são <b>Plus</b>.</div>
+</div>
+
+<div style="position:absolute;left:2080px;top:5540px;width:300px;background:#fef4a8;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(-1deg);font-family:'Asap',sans-serif">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#5a4a00;margin-bottom:5px">💛 Ética antes do boleto</div>
+  <div style="font-size:12.5px;color:#4a4310;line-height:1.45">"Você pode continuar grátis" em destaque. Sem medo para vender, sem cobrança escondida, cancelamento livre. A tela de emergência é <b>sempre gratuita</b>.</div>
+</div>
+
+<div style="position:absolute;left:2080px;top:5860px;width:300px;background:#dff0e6;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.14);transform:rotate(1deg);font-family:'Asap',sans-serif;border:1px solid #a7ddbd">
+  <div style="font-family:'Gaegu',cursive;font-size:18px;font-weight:700;color:#0d6b35;margin-bottom:5px">✅ Fluxo ideal (7 passos)</div>
+  <div style="font-size:12.5px;color:#16432b;line-height:1.5">1. Recebi algo estranho → 2. Abri o app → 3. Toquei numa opção grande → 4. Colei link / mandei print → 5. Entendi o risco → 6. Soube o que fazer → 7. Pedi ajuda se precisei.</div>
+</div>
+</x-dc>
+</body>
+</html>

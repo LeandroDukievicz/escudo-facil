@@ -1,0 +1,21 @@
+{
+  "name": "escudo-facil",
+  "private": true,
+  "version": "0.1.0",
+  "description": "App anti-golpe para pessoas leigas, idosos e familiares — semáforo de risco.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:landing": "npm run dev -w @escudo/landing",
+    "build:landing": "npm run build -w @escudo/landing",
+    "dev:mobile": "npm run start -w @escudo/mobile",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}
