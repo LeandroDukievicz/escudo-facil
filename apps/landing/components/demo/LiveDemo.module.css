@@ -206,3 +206,7 @@
 .pressure strong {
   color: #fff;
 }
+
+:global(html[data-contrast='high']) .tabs button[aria-selected='true'] {
+  color: #000;
+}

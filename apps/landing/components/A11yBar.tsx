@@ -84,15 +84,16 @@ export function A11yBar() {
     <div className={styles.bar} role="toolbar" aria-label="Acessibilidade">
       <button type="button" onClick={nextScale} aria-label={`Tamanho do texto: ${Math.round(prefs.scale * 100)}%`}>
         <span aria-hidden="true">🔠</span>
-        <span>Texto {prefs.scale > 1 ? `${Math.round(prefs.scale * 100)}%` : 'grande'}</span>
+        <span>{prefs.scale > 1 ? `Texto ${Math.round(prefs.scale * 100)}%` : 'Texto A+'}</span>
       </button>
       <button
         type="button"
         aria-pressed={prefs.contrast}
+        aria-label="Alto contraste"
         onClick={() => setPrefs((p) => ({ ...p, contrast: !p.contrast }))}
       >
         <span aria-hidden="true">🌗</span>
-        <span>Alto contraste</span>
+        <span>Contraste</span>
       </button>
       {voiceOk && (
         <button type="button" aria-pressed={speaking} onClick={toggleVoice}>

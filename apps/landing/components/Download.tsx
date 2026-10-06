@@ -21,7 +21,7 @@ export function Download() {
             </span>
           </span>
           <span className={styles.store} aria-disabled="true">
-            <span aria-hidden="true"></span>
+            <span aria-hidden="true">🍎</span>
             <span>
               <small>Em breve na</small>App Store
             </span>
