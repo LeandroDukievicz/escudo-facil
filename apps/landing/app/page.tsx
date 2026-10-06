@@ -9,6 +9,7 @@ import { Privacy } from '@/components/Privacy';
 import { Emergency } from '@/components/Emergency';
 import { Accessibility } from '@/components/Accessibility';
 import { A11yBar } from '@/components/A11yBar';
+import { Plans } from '@/components/Plans';
 
 export default function Page() {
   return (
@@ -24,6 +25,7 @@ export default function Page() {
         <Privacy />
         <Accessibility />
         <Emergency />
+        <Plans />
       </main>
       <A11yBar />
     </>
